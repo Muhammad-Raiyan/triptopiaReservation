@@ -74,11 +74,13 @@ public class MySqlEmployeeDao implements EmployeeDao{
 
     @Override
     public void deleteEmployee(int id) {
-
+        final String sql = "DELETE FROM Employee WHERE Employee.SSN = ?";
+        jdbcTemplate.update(sql, id);
     }
 
     @Override
     public void updateEmployee(Employee employee) {
+
 
     }
 
