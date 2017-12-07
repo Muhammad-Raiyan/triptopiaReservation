@@ -268,6 +268,28 @@
 								</div>
 							</div>
 						</div>
+<!--*** DELETE CUSTOMER ******************************************-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#deleteCustomer">Change Customer</a>
+								</h4>
+							</div>
+							<div id="deleteCustomer" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form id="deleteCustomerForm">
+										<div class="form-group">
+											<label for="deleteCustomerAccountNo">Customer Account Number</label>
+											<input type="text" class="form-control" name="deleteCustomerAccountNo" id="deleteCustomerAccountNo" placeholder="123004567">
+										</div>
+										<button type="button" class="btn btn-default" onCLick="deleteCustomer();">Submit</button>
+									</form>
+									<div id="deleteCustomerResult">
+										<!--TODO: Database fun-->
+									</div>
+								</div>
+							</div>
+						</div>
 <!--*** GET RECOMMENDED FLIGHTS ******************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">

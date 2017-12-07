@@ -54,6 +54,11 @@ function changeCustomer(){
 	ajaxWrapperPUT('/home/rep/updateCustomer', JSON.stringify(toSend));
 }
 
+function deleteCustomer(){
+	var url = '/home/rep/deleteCustomer/' + $("#deleteCustomerAccountNo").val();
+	ajaxWrapperDELETE(url);
+}
+
 function getRecommendedFlightsByCustomer(){
 	var url = '/home/rep/recommendedFlights/' + $("#getRecommendedFlightsByCustomerAccountNo").val();
 	ajaxWrapperGET(url, "getRecommendedFlightsByCustomerResult");
