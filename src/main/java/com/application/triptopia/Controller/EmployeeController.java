@@ -47,8 +47,8 @@ public class EmployeeController {
         return employeeService.getAllFlights();
     }
 
-    @RequestMapping(value="/reservationsByFlightNumber/{flightNo}", method = RequestMethod.GET)
-    public Collection<Reservation> getReservationsByFlightNumber(@PathVariable("flightNo") int flightNo){
-        return employeeService.getReservationsByFlightNumber(flightNo);
+    @RequestMapping(value="/reservationsByFlightNumber/{airlineId}/{flightNo}", method = RequestMethod.GET)
+    public Collection<Reservation> getReservationsByFlightNumber(@PathVariable("airlineId") String airlineId, @PathVariable("flightNo") int flightNo){
+        return employeeService.getReservationsByFlightNumber(airlineId, flightNo);
     }
 }

@@ -42,7 +42,7 @@ public class EmployeeService {
         return this.employeeDao.getAllFlight();
     }
 
-    public Collection<Reservation> getReservationsByFlightNumber(int flightNo) {
-        return this.employeeDao.getReservationsByFlightNumber(flightNo);
+    public Collection<Reservation> getReservationsByFlightNumber(String airlineId, int flightNo) {
+        return this.employeeDao.getReservationsByFlightNumber(airlineId, flightNo);
     }
 }
