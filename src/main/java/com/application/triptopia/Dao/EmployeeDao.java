@@ -21,5 +21,5 @@ public interface EmployeeDao {
 
     Collection<Flight> getAllFlight();
 
-    Collection<Reservation> getReservationsByFlightNumber(int flightNo);
+    Collection<Reservation> getReservationsByFlightNumber(String airlineId, int flightNo);
 }

@@ -144,11 +144,11 @@ public class MySqlEmployeeDao implements EmployeeDao{
     }
 
     @Override
-    public Collection<Reservation> getReservationsByFlightNumber(int flightNo) {
+    public Collection<Reservation> getReservationsByFlightNumber(String airlineId, int flightNo) {
         String sql = "SELECT DISTINCT reservation.* \n" +
                 "    FROM reservation, includes\n" +
-                "WHERE reservation.ResrNo = includes.ResrNo AND includes.FlightNo = ?";
-        List<Reservation> query = jdbcTemplate.query(sql, new ReservationRowMapper(), flightNo);
+                "WHERE reservation.ResrNo = includes.ResrNo AND includes.AirlineId=? AND includes.FlightNo = ?";
+        List<Reservation> query = jdbcTemplate.query(sql, new ReservationRowMapper(), airlineId, flightNo);
         return query;
     }
 
