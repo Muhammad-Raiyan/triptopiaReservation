@@ -99,18 +99,26 @@
 											</div>
 											<hr />
 											<div class="form-group">
-												<label for="makeRoundTripReservationClass">Seat Class</label>
-												<input type="text" class="form-control" name="makeRoundTripReservationClass" id="makeRoundTripReservationClass" placeholder="Business">
+												<label for="makeRoundTripReservationFromClass">Departure Seat Class</label>
+												<input type="text" class="form-control" name="makeRoundTripReservationFromClass" id="makeRoundTripReservationFromClass" placeholder="Business">
 											</div>
 											<div class="form-group">
-												<label for="makeRoundTripReservationSeatNumber">Seat Number</label>
-												<input type="text" class="form-control" name="makeRoundTripReservationSeatNumber" id="makeRoundTripReservationSeatNumber" placeholder="AA000">
+												<label for="makeRoundTripReservationFromSeatNumber">Depature Seat Number</label>
+												<input type="text" class="form-control" name="makeRoundTripReservationFromSeatNumber" id="makeRoundTripReservationFromSeatNumber" placeholder="AA000">
+											</div>
+											<div class="form-group">
+												<label for="makeRoundTripReservationToClass">Return Seat Class</label>
+												<input type="text" class="form-control" name="makeRoundTripReservationToClass" id="makeRoundTripReservationToClass" placeholder="Business">
+											</div>
+											<div class="form-group">
+												<label for="makeRoundTripReservationToSeatNumber">Return Seat Number</label>
+												<input type="text" class="form-control" name="makeRoundTripReservationToSeatNumber" id="makeRoundTripReservationToSeatNumber" placeholder="AA000">
 											</div>
 											<div class="form-group">
 												<label for="makeRoundTripReservationMeal">Meal Choice</label>
 												<input type="text" class="form-control" name="makeRoundTripReservationMeal" id="makeRoundTripReservationMeal" placeholder="Beef">
 											</div>
-											<button type="button" class="btn btn-default">Submit</button>
+											<button type="button" class="btn btn-default" onClick="makeRoundTripReservation()">Submit</button>
 										</form>
 									</div>
 								</div>
