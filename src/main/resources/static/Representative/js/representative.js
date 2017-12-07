@@ -39,8 +39,8 @@ function addCustomer(){
 	toSend["state"] = $("#addCustomerPersonState").val();
 	toSend["zipCode"] = $("#addCustomerPersonZipCode").val();
 	toSend["phoneNo"] = $("#addCustomerphoneNo").val();
-	toSend["creditCard"] = $("#addCustomerCreditCard").val();
-	toSend["date"] = $("#addCustomerDate").val();
+	toSend["creditCardNo"] = $("#addCustomerCreditCard").val();
+	toSend["creationDate"] = $("#addCustomerDate").val();
 	toSend["email"] = $("#addCustomerEmail").val();
 	ajaxWrapperPOST('/home/rep/addCustomer', JSON.stringify(toSend));
 }
@@ -48,8 +48,8 @@ function changeCustomer(){
 	var toSend = {};
 	toSend["accountNo"] = $("#changeCustomerAccountNo").val();
 	toSend["phoneNo"] = $("#addCustomerphoneNo").val();
-	toSend["creditCard"] = $("#addCustomerCreditCard").val();
-	toSend["date"] = $("#addCustomerDate").val();
+	toSend["creditCardNo"] = $("#addCustomerCreditCard").val();
+	toSend["creationDate"] = $("#addCustomerDate").val();
 	toSend["email"] = $("#addCustomerEmail").val();
 	ajaxWrapperPUT('/home/rep/updateCustomer', JSON.stringify(toSend));
 }
