@@ -179,8 +179,8 @@ public class MySqlEmployeeDao implements EmployeeDao{
     public Collection<SalesReport> getSalesReport(String date){
         String sql = "SELECT Reservation.ResrDate, Reservation.TotalFare, Reservation.BookingFee\n" +
                 "    FROM Reservation\n" +
-                "    WHERE MONTH(Reservation.ResrDate) = MONTH(?)";
-        return jdbcTemplate.query(sql, new SalesReportRowMapper(), date);
+                "    WHERE MONTH(Reservation.ResrDate) = MONTH(?) AND  YEAR(Reservation.ResrDate) = YEAR(?)";
+        return jdbcTemplate.query(sql, new SalesReportRowMapper(), date, date);
     }
 
 }
