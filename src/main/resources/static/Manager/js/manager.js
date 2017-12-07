@@ -1,38 +1,74 @@
-function removeEmployee(){
-	//var formObject = formToObject("#removeEmployeeForm");
+//onClick functions
+function defaultSuccess(response){
+	console.log("Success: " + JSON.stringify(response));
+}
+function ajaxWrapperDELETE(inUrl){
 	jQuery.ajax({
-		url: '/employee/'+$("#removeEmployeeSSN").val(),
+		url: inUrl,
 		type: 'DELETE',
 		success: function(response) {
-		//BLAH
-		console.log("success");
+			console.log("Success: " + JSON.stringify(response));
+		},
+		error: function(response) {
+			console.log(JSON.stringify(response));
 		}
 	});
-	console.log("Remove\n");
 }
-//TODO decisions to be made
+function ajaxWrapperGET(inUrl, successFunction){
+	jQuery.ajax({
+		url: inUrl,
+		type: 'GET',
+		success: successFunction,
+		error: function(response) {
+			console.log(JSON.stringify(response));
+		}
+	});
+}
+function ajaxWrapperPOST(inUrl, inData){
+	jQuery.ajax({
+		url: inUrl,
+		type: 'POST',
+		data: inData
+		headers:{
+			"Content-Type":"application/json"
+		},
+		success: function(response) {
+			console.log("Success: " + JSON.stringify(response));
+		},
+		error: function(response) {
+			console.log(JSON.stringify(response));
+		}
+	});
+}
+function ajaxWrapperPUT(inUrl, inData){
+	jQuery.ajax({
+		url: inUrl,
+		type: 'PUT',
+		data: inData
+		headers:{
+			"Content-Type":"application/json"
+		},
+		success: function(response) {
+			console.log("Success: " + JSON.stringify(response));
+		},
+		error: function(response) {
+			console.log(JSON.stringify(response));
+		}
+	});
+}
+
+function removeEmployee(){
+	ajaxWrapperDELETE('/employee/delete'+$("#removeEmployeeSSN").val());
+}
 
 function addEmployee(){
-	//var formObject = formToObject("#addEmployeeForm");
 	var toSend = {};
 	toSend["personId"] = $("#addEmployeePersonZipCode").val();
 	toSend["ssn"] = $("#addEmployeeSSN").val();
 	toSend["isManager"] = $("input[name='addEmployeeIsManager']:checked").val()=="yes";
 	toSend["startDate"] = $("#addEmployeeStartDate").val();
 	toSend["hourlyRate"] = $("#addEmployeeHourlyRate").val();
-	jQuery.ajax({
-		url: '/employee',
-		type: 'POST',
-		data:JSON.stringify(toSend),
-		headers:{
-			"Content-Type":"application/json"
-		},
-		success: function(response) {
-		//BLAH
-		console.log("success");
-		}
-	});
-	console.log("Added\n");
+	ajaxWrapperPOST('/employee/insert', JSON.stringify(toSend));
 }
 
 function changeEmployee(){
@@ -41,40 +77,26 @@ function changeEmployee(){
 	toSend["isManager"] = $("input[name='addEmployeeIsManager']:checked").val()=="yes";
 	toSend["startDate"] = $("#addEmployeeStartDate").val();
 	toSend["hourlyRate"] = $("#addEmployeeHourlyRate").val();
-	jQuery.ajax({
-		url: '/employee',
-		type: 'PUT',
-		headers:{
-			"Content-Type":"application/json"
-		},
-		data: JSON.stringify(toSend),
-		success: function(response) {
-		//BLAH
-		console.log("success");
-		}
-	});
-	console.log("Added\n");
+	ajaxWrapperPUT('/employee/update', JSON.stringify(toSend));
 }
 
-
 function getAllEmployees(){
-	jQuery.ajax({
-		url: '/employee',
-		type: 'GET',
-		success: function(response) {
-			console.log(JSON.stringify(response));
-			TableFromJSON(response,"getAllEmployeesResult");
-		}
+	ajaxWrapperGET('/employee', function(response) {
+		console.log(JSON.stringify(response));
+		TableFromJSON(response,"getAllEmployeesResult");
 	});
 }
 
 function getFlightListing(){
-	jQuery.ajax({
-		url: '/employee/flights',
-		type: 'GET',
-		success: function(response) {
-			console.log(JSON.stringify(response));
-			TableFromJSON(response,"getFlightListingResult");
-		}
+	ajaxWrapperGET('/employee/allFlights', function(response) {
+		console.log(JSON.stringify(response));
+		TableFromJSON(response,"getFlightListingResult");
+	});
+}
+
+function viewEmployee(){
+	ajaxWrapperGET('/employee/get'+$("#viewEmployeeSSN").val(), function(response) {
+		console.log(JSON.stringify(response));
+		TableFromJSON(response,"viewEmployeeResult");
 	});
 }
