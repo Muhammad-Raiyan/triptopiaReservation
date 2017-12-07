@@ -35,4 +35,8 @@ public class EmployeeService {
     public void insertEmployee(Employee employee) {
         this.employeeDao.insertEmployeeToDB(employee);
     }
+
+    public void getAllFlights(){
+        this.employeeDao.getAllFlight();
+    }
 }

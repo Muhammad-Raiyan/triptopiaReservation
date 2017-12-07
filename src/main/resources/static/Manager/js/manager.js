@@ -15,12 +15,13 @@ function removeEmployee(){
 function addEmployee(){
 	//var formObject = formToObject("#addEmployeeForm");
 	var toSend = {};
-	toSend["firstName"] = $("#addEmployeePersonFirstName").val();
-	toSend["lastName"] = $("#addEmployeePersonLastName").val();
-	toSend["address"] = $("#addEmployeePersonAddress").val();
-	toSend["city"] = $("#addEmployeePersonCity").val();
-	toSend["state"] = $("#addEmployeePersonState").val();
-	toSend["zipCode"] = $("#addEmployeePersonZipCode").val();
+	// toSend["firstName"] = $("#addEmployeePersonFirstName").val();
+	// toSend["lastName"] = $("#addEmployeePersonLastName").val();
+	// toSend["address"] = $("#addEmployeePersonAddress").val();
+	// toSend["city"] = $("#addEmployeePersonCity").val();
+	// toSend["state"] = $("#addEmployeePersonState").val();
+	// toSend["zipCode"] = $("#addEmployeePersonZipCode").val();
+	toSend["personId"] = $("#addEmployeePersonZipCode").val();
 	toSend["ssn"] = $("#addEmployeeSSN").val();
 	toSend["isManager"] = $("input[name='addEmployeeIsManager']:checked").val()=="yes";
 	toSend["startDate"] = $("#addEmployeeStartDate").val();
@@ -28,7 +29,7 @@ function addEmployee(){
 	jQuery.ajax({
 		url: '/employee',
 		type: 'POST',
-		data:toSend,
+		data:JSON.stringify(toSend),
 		headers:{
 			"Content-Type":"application/json"
 		},

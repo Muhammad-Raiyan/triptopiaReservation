@@ -58,4 +58,9 @@ public class FakeEmployeeDaoImpl implements EmployeeDao {
     public void insertEmployeeToDB(Employee employee) {
         this.employeeMap.put(employee.getPersonId(), employee);
     }
+
+    @Override
+    public void getAllFlight() {
+
+    }
 }

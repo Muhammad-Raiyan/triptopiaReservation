@@ -89,6 +89,7 @@ public class MySqlEmployeeDao implements EmployeeDao{
 
     @Override
     public void insertEmployeeToDB(Employee employee) {
+
         String sql = "INSERT INTO reservation_schema.Employee(Id,SSN,IsManager,StartDate,HourlyRate) VALUES (?, ?, ?, ?, ?)";
         DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
         Date date = null;
@@ -98,5 +99,11 @@ public class MySqlEmployeeDao implements EmployeeDao{
             e.printStackTrace();
         }
         jdbcTemplate.update(sql, employee.getPersonId(), employee.getSsn(), employee.isManager(), date, employee.getHourlyRate());
+    }
+
+    @Override
+    public void getAllFlight() {
+        String sql = " SELECT * FROM Flight";
+        jdbcTemplate.execute(sql);
     }
 }
