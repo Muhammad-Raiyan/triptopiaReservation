@@ -38,7 +38,7 @@ function addCustomer(){
 	toSend["city"] = $("#addCustomerPersonCity").val();
 	toSend["state"] = $("#addCustomerPersonState").val();
 	toSend["zipCode"] = $("#addCustomerPersonZipCode").val();
-	toSend["phoneNo"] = $("#addCustomerphoneNo").val();
+	toSend["phoneNo"] = $("#addCustomerPhoneNo").val();
 	toSend["creditCardNo"] = $("#addCustomerCreditCard").val();
 	toSend["creationDate"] = $("#addCustomerDate").val();
 	toSend["email"] = $("#addCustomerEmail").val();
@@ -47,7 +47,7 @@ function addCustomer(){
 function changeCustomer(){
 	var toSend = {};
 	toSend["accountNo"] = $("#changeCustomerAccountNo").val();
-	toSend["phoneNo"] = $("#addCustomerphoneNo").val();
+	toSend["phoneNo"] = $("#addCustomerPhoneNo").val();
 	toSend["creditCardNo"] = $("#addCustomerCreditCard").val();
 	toSend["creationDate"] = $("#addCustomerDate").val();
 	toSend["email"] = $("#addCustomerEmail").val();
