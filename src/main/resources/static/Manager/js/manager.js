@@ -84,7 +84,7 @@ function getFlightListing(){
 }
 
 function viewEmployee(){
-	ajaxWrapperGET('/employee/get/'+$("#viewEmployeeSSN").val(), function(response) {
+		ajaxWrapperGET('/employee/get/'+$("#viewEmployeeSSN").val(), function(response) {
 		console.log("Success: " + JSON.stringify(response, null, 2));
 		TableFromJSON([response],"viewEmployeeResult");
 	});
