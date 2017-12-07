@@ -240,10 +240,6 @@
 								<div class="panel-body">
 									<form id="changeCustomerForm">
 										<div class="form-group">
-											<label for="changeCustomerPersonFirstName">First Name</label>
-											<input type="text" class="form-control" name="changeCustomerPersonFirstName" id="changeCustomerPersonFirstName" placeholder="John">
-										</div>
-										<div class="form-group">
 											<label for="changeCustomerAccountNo">Customer Account Number</label>
 											<input type="text" class="form-control" name="changeCustomerAccountNo" id="changeCustomerAccountNo" placeholder="123004567">
 										</div>
@@ -267,6 +263,28 @@
 										<button type="button" class="btn btn-default" onCLick="changeCustomer();">Submit</button>
 									</form>
 									<div id="changeCustomerResult">
+										<!--TODO: Database fun-->
+									</div>
+								</div>
+							</div>
+						</div>
+<!--*** GET RECOMMENDED FLIGHTS ******************************************-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#getRecommendedFlightsByCustomer">Get Customer's Recommended Flights</a>
+								</h4>
+							</div>
+							<div id="getRecommendedFlightsByCustomer" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form id="getRecommendedFlightsByCustomerForm">
+										<div class="form-group">
+											<label for="getRecommendedFlightsByCustomerAccountNo">Customer Account Number</label>
+											<input type="text" class="form-control" name="getRecommendedFlightsByCustomerAccountNo" id="getRecommendedFlightsByCustomerAccountNo" placeholder="123004567">
+										</div>
+										<button type="button" class="btn btn-default" onCLick="getRecommendedFlightsByCustomer();">Submit</button>
+									</form>
+									<div id="getRecommendedFlightsByCustomerResult">
 										<!--TODO: Database fun-->
 									</div>
 								</div>

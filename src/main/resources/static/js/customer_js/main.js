@@ -169,8 +169,8 @@ function makeRoundTripReservationCustomer(){
 	toSend2["airlineId"]        = $("#makeRoundTripReservationToAirline").val();
 	toSend2["flightNo"]   = $("#makeRoundTripReservationToNumber").val();
 	toSend2["legNo"]      = $("#makeRoundTripReservationToLeg").val();
-	toSend2["seatClass"]            = $("#makeRoundTripReservationToClass").val();
-	toSend2["seatNo"]       = $("#makeRoundTripReservationToSeatNumber").val();
+	toSend2["seatClass"]            = $("#makeRoundTripReservationFromClass").val();
+	toSend2["seatNo"]       = $("#makeRoundTripReservationFromSeatNumber").val();
 	toSend2["meal"]             = $("#makeRoundTripReservationMeal").val();
 	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend1));
 	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend2));

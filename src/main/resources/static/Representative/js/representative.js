@@ -53,3 +53,8 @@ function changeCustomer(){
 	toSend["email"] = $("#addCustomerEmail").val();
 	ajaxWrapperPUT('/home/rep/updateCustomer', JSON.stringify(toSend));
 }
+
+function getRecommendedFlightsByCustomer(){
+	var url = '/home/rep/recommendedFlights/' + $("#getRecommendedFlightsByCustomerAccountNo").val();
+	ajaxWrapperGET(url, "getRecommendedFlightsByCustomerResult");
+}
