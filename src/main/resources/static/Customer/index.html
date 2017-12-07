@@ -17,6 +17,23 @@
         <link rel="stylesheet" href="../css/customer_css/tooplate-style.css">
         <link rel="stylesheet" href="../css/customer_css/owl-carousel.css">
 
+				<style>
+					table {
+						border-collapse: collapse;
+					}
+					table, th, td {
+						border: 1px solid black;
+						padding: 5px;
+					}
+
+					.inverted{
+						filter: invert(100%);
+					}
+					.backgroundInvert{
+						background-color:black;
+					}
+				</style>
+
     </head>
 
     <body>
@@ -29,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Triptopia</a>
+                    <a class="navbar-brand" href="/index.html">Triptopia</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -42,7 +59,7 @@
 
     <!-- Main menu + Book the tickets-->
     <section class="banner" id="top">
-        
+
         <div class="container">
 
             <div class="row">
@@ -60,7 +77,7 @@
                                 <li><a href="#available-visited">view available flights<i class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>
-                        <div class="page-direction-button"> 
+                        <div class="page-direction-button">
                             <a href="../index.html"><i class="fa fa-phone"></i>Go back to main page</a>
                         </div>
                     </div>
@@ -111,7 +128,7 @@
                                         <div class="col-md-6">
                                             <fieldset>
                                                 <label for="departure">Departure date:</label>
-                                                <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Select date..." required="" onchange='this.form.()'>
+                                                <input name="departure" type="text" class="form-control date" id="departure" placeholder="Select date..." required="" onchange='this.form.()'>
                                             </fieldset>
                                         </div>
                                         <div class="col-md-6">
@@ -136,11 +153,13 @@
                                         </div>
                                         <div class="col-md-6">
                                             <fieldset>
-                                                <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                                <button type="button" id="form-submit" class="btn" onClick="orderTicketsNowClick()">Order Ticket Now</button>
                                             </fieldset>
                                         </div>
                                     </div>
                                 </form>
+																<hr />
+                                <div id="bookFlightResults"></div>
                             </div>
                         </div>
                     </section>
@@ -160,7 +179,7 @@
                 </div>
                 <div class="col-md-12">
                     <div id="owl-available" class="owl-carousel owl-theme">
-        
+
                         <div class="item col-md-12">
                             <div class="available-item">
                                 <img src="../img/place-02.jpg" alt="">
@@ -235,11 +254,11 @@
             <div class="row">
                 <div class="col-md-12" >
                 <span><br /></span>
-                    <div class="page-direction-button"> 
+                    <div class="page-direction-button">
                             <a href="#" class="scroll-top"><i class="fa fa-phone"></i>Go book the flight tickets</a>
                     </div>
                     <span><br /></span>
-                    <div class="page-direction-button"> 
+                    <div class="page-direction-button">
                             <a href="../index.html"><i class="fa fa-phone"></i>Go back to main page</a>
                     </div>
                     <span><br /><br /></span>
@@ -359,11 +378,11 @@
             <div class="row">
                 <div class="col-md-12" >
 
-                    <div class="page-direction-button"> 
+                    <div class="page-direction-button">
                             <a href="#" class="scroll-top"><i class="fa fa-phone"></i>Go book the flight tickets</a>
                     </div>
                     <span><br /></span>
-                    <div class="page-direction-button"> 
+                    <div class="page-direction-button">
                             <a href="../index.html"><i class="fa fa-phone"></i>Go back to main page</a>
                     </div>
                     <span><br /><br /></span>
@@ -387,15 +406,14 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <!--script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script-->
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script-->
         <!--script src="/305_Website/js/bootstrap.js"></script-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
         <script src="../js/customer_js/vendor/bootstrap.min.js"></script>
-        
+        <script src="/js/myJavasctipt.js"></script>
         <script src="../js/customer_js/datepicker.js"></script>
         <script src="../js/customer_js/plugins.js"></script>
         <script src="../js/customer_js/main.js"></script>

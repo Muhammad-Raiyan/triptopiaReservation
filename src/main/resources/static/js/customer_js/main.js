@@ -1,14 +1,14 @@
 jQuery(document).ready(function($) {
 
 	'use strict';
-      
+
       $('#form-submit .date').datepicker({
       });
 
       var owl = $("#owl-suiteroom");
 
         owl.owlCarousel({
-          
+
           pagination : true,
           paginationNumbers: false,
           autoPlay: 6000, //Set AutoPlay to 3 seconds
@@ -17,14 +17,14 @@ jQuery(document).ready(function($) {
           itemsDesktopSmall : [900,1], // betweem 900px and 601px
           itemsTablet: [600,1], //2 items between 600 and 0
           itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-          
+
       });
 
 
       var owl = $("#owl-mostvisited");
 
         owl.owlCarousel({
-          
+
           pagination : true,
           paginationNumbers: false,
           autoPlay: 6000, //Set AutoPlay to 3 seconds
@@ -33,14 +33,14 @@ jQuery(document).ready(function($) {
           itemsDesktopSmall : [900,2], // betweem 900px and 601px
           itemsTablet: [600,1], //2 items between 600 and 0
           itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-          
+
       });
 
 
       var owl = $("#owl-available");
 
         owl.owlCarousel({
-          
+
           pagination : true,
           paginationNumbers: false,
           autoPlay: 6000, //Set AutoPlay to 3 seconds
@@ -49,12 +49,12 @@ jQuery(document).ready(function($) {
           itemsDesktopSmall : [900,2], // betweem 900px and 601px
           itemsTablet: [600,1], //2 items between 600 and 0
           itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-          
+
       });
 
 
 
-        
+
         $('.recommendedgroup > div').hide();
         $('.recommendedgroup > div:first-of-type').show();
         $('.tabs a').click(function(e){
@@ -67,7 +67,7 @@ jQuery(document).ready(function($) {
         $this.addClass('active');
         $(tabgroup).children('div').hide();
         $(target).show();
-      
+
         })
 
 
@@ -83,7 +83,7 @@ jQuery(document).ready(function($) {
         $this.addClass('active');
         $(tabgroup).children('div').hide();
         $(target).show();
-      
+
         })
 
 
@@ -99,14 +99,14 @@ jQuery(document).ready(function($) {
         $this.addClass('active');
         $(tabgroup).children('div').hide();
         $(target).show();
-      
+
         })
 
 
 
         $(".pop-button").click(function () {
             $(".pop").fadeIn(300);
-            
+
         });
 
         $(".pop > span").click(function () {
@@ -134,3 +134,14 @@ jQuery(document).ready(function($) {
 
 
 });
+
+function orderTicketsNowClick(){
+	var url = '/home/customer/orderTickets/'
+	toSend = {};
+	url += (toSend["fromAirport"]  = $("#from").val()) + '/';
+	url += (toSend["toAirport"]    = $("#to").val()) + '/';
+	url += (toSend["depatureDate"] = $("#departure").val()) + '/';
+	url += (toSend["returnDate"]   = $("#return").val()) + '/';
+	url += (toSend["tripType"]     = $("input[name='trip']:checked").val());
+	ajaxWrapperGET(url, "bookFlightResults");
+}

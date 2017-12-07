@@ -10,7 +10,7 @@ function makeRoundTripReservation(){
 	toSend["class"]            = $("#makeRoundTripReservationClass").val();
 	toSend["seatNumber"]       = $("#makeRoundTripReservationSeatNumber").val();
 	toSend["meal"]             = $("#makeRoundTripReservationMeal").val();
-	ajaxWrapperPOST('/representative/roundTrip', JSON.stringify(toSend));
+	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend));
 }
 
 function makeOneWayTripReservation(){
@@ -22,5 +22,5 @@ function makeOneWayTripReservation(){
 	toSend["class"]            = $("#makeOneWayTripReservationClass").val();
 	toSend["seatNumber"]       = $("#makeOneWayTripReservationSeatNumber").val();
 	toSend["meal"]             = $("#makeOneWayTripReservationMeal").val();
-	ajaxWrapperPOST('/representative/oneWay', JSON.stringify(toSend));
+	ajaxWrapperPOST('/home/rep/oneWay', JSON.stringify(toSend));
 }
