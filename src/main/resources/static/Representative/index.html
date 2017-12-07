@@ -16,6 +16,21 @@
 			body {
 				padding-top: 6rem;
 			}
+
+			table {
+				border-collapse: collapse;
+			}
+			table, th, td {
+				border: 1px solid black;
+				padding: 5px;
+			}
+
+			.inverted{
+				filter: invert(100%);
+			}
+			.backgroundInvert{
+				background-color:black;
+			}
 		</style>
 	</head>
 
@@ -28,16 +43,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button-->
-					<a class="navbar-brand" href="#">Triptopia</a>
+					<a class="navbar-brand" href="/index.html">Triptopia</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
+						<li><a href="#" onClick="$('#largeOuterContainer').toggleClass('inverted');$('body').toggleClass('backgroundInvert');">Toggle Night Mode</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
 
-		<div class="container">
+		<div class="container" id="largeOuterContainer">
 			<div class="row">
 				<div class="col-sm-8 col-sm-offset-2 col-sm-10 col-sm-offset-1">
 					<div class="panel-group" id="accordion">
@@ -49,6 +65,7 @@
 								</h4>
 							</div>
 							<div id="makeRoundTripReservation" class="panel-collapse collapse">
+								<div id="makeRoundTripReservationResult"></sum>
 								<div class="panel-body">
 									<form>
 										<div class="form-group">
@@ -93,7 +110,7 @@
 											<label for="makeRoundTripReservationMeal">Meal Choice</label>
 											<input type="text" class="form-control" name="makeRoundTripReservationMeal" id="makeRoundTripReservationMeal" placeholder="Beef">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -107,6 +124,7 @@
 							</div>
 							<div id="makeOneWayTripReservation" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="makeOneWayTripReservationResult"></div>
 									<form>
 										<div class="form-group">
 											<label for="makeOneWayTripReservationAccountNumber">Customer Account Number</label>
@@ -138,7 +156,7 @@
 											<label for="makeOneWayTripReservationMeal">Meal Choice</label>
 											<input type="text" class="form-control" name="makeOneWayTripReservationMeal" id="makeOneWayTripReservationMeal" placeholder="Beef">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="makeOneWayTripReservation()">Submit</button>
 									</form>
 								</div>
 							</div>
