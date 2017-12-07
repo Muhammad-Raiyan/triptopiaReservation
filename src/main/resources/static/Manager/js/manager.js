@@ -81,7 +81,7 @@ function changeEmployee(){
 }
 
 function getAllEmployees(){
-	ajaxWrapperGET('/allEmployees', function(response) {
+	ajaxWrapperGET('/employee/allEmployees', function(response) {
 		console.log(JSON.stringify(response));
 		TableFromJSON(response,"getAllEmployeesResult");
 	});
