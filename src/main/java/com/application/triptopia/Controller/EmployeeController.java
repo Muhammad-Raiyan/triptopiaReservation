@@ -3,6 +3,7 @@ package com.application.triptopia.Controller;
 import com.application.triptopia.Entity.Employee;
 import com.application.triptopia.Entity.Flight;
 import com.application.triptopia.Entity.Reservation;
+import com.application.triptopia.Entity.SalesReport;
 import com.application.triptopia.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -55,6 +56,11 @@ public class EmployeeController {
     @RequestMapping(value="/reservationsByCustomerName/{firstName}/{lastName}", method = RequestMethod.GET)
     public Collection<Reservation> getReservationsByCustomerName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName){
         return employeeService.getReservationsByCustomerName(firstName, lastName);
+    }
+
+    @RequestMapping(value="/salesReport/{date}", method = RequestMethod.GET)
+    public Collection<SalesReport> getSalesReport(@PathVariable("date") String date){
+        return employeeService.getSalesReport(date);
     }
 
 }

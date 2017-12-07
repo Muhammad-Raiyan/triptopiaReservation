@@ -3,7 +3,9 @@ package com.application.triptopia.Dao;
 import com.application.triptopia.Entity.Employee;
 import com.application.triptopia.Entity.Flight;
 import com.application.triptopia.Entity.Reservation;
+import com.application.triptopia.Entity.SalesReport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -67,6 +69,16 @@ public class MySqlEmployeeDao implements EmployeeDao{
             reservation.setRepSSN(resultSet.getInt("repSSN"));
             reservation.setAccountNo(resultSet.getInt("accountNo"));
             return reservation;
+        }
+    }
+
+    private static class SalesReportRowMapper implements RowMapper<SalesReport>{
+        @Override
+        public SalesReport mapRow(ResultSet resultSet, int i) throws SQLException {
+            SalesReport sr = new SalesReport(resultSet.getTimestamp("resrDate").toString(),
+                    resultSet.getDouble("totalFare"), resultSet.getDouble("bookingFee"));
+
+            return sr;
         }
     }
 
@@ -154,13 +166,21 @@ public class MySqlEmployeeDao implements EmployeeDao{
 
     @Override
     public Collection<Reservation> getReservationsByCustomerName(String firstName, String lastName) {
-        String sql = "SELECT DISTINCT Reservation.*\n" +
-                "\tFROM Reservation, ReservationPassenger, Person\n" +
-                "\tWHERE Reservation.ResrNo = ReservationPassenger.ResrNo\n" +
-                "\t\tAND ReservationPassenger.Id = Person.Id \n" +
-                "        AND Person.FirstName = ? AND Person.LastName = ?";
+        String sql = "SELECT DISTINCT reservation.*\n" +
+                "\tFROM reservation, reservationPassenger, person\n" +
+                "\tWHERE reservation.ResrNo = reservationPassenger.ResrNo\n" +
+                "\t\tAND reservationPassenger.Id = person.Id \n" +
+                "        AND person.FirstName = ? AND person.LastName = ?";
 
         List<Reservation> query = jdbcTemplate.query(sql, new ReservationRowMapper(), firstName, lastName);
         return query;
     }
+
+    public Collection<SalesReport> getSalesReport(String date){
+        String sql = "SELECT Reservation.ResrDate, Reservation.TotalFare, Reservation.BookingFee\n" +
+                "    FROM Reservation\n" +
+                "    WHERE MONTH(Reservation.ResrDate) = MONTH(?)";
+        return jdbcTemplate.query(sql, new SalesReportRowMapper(), date);
+    }
+
 }
