@@ -59,13 +59,18 @@
 				<div class="col-md-10 col-md-offset-1">
 					<form>
 						<div class="form-group">
-							<br>User ID: <input type = "text" name="userId" />
+							<label for="accountNo">Account Number</label>
+							<input type="text" name="accountNo" id="accountNo" class="form-control"/>
 						</div>
 						<div class="form-group">
-							<br>Password: <input type="password" name="password" />
-						<
-						<br><input type="submit" />
+							<label for="password">Password</label>
+							<input type="password" name="password" id="password" class="form-control"/>
+						</div>
+						<button type="button" class="btn" onClick="loggedIn()"> Submit</button>
 					</form>
+					<div class="panel-group" id="accordianRestOfThePage">
+
+					</div>
 				</div>
 			</div>
 		</div>
@@ -74,7 +79,12 @@
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<script src="../js/customer_js/vendor/bootstrap.min.js"></script>
 		<script src="/js/myJavasctipt.js"></script>
-		<script src="/js/customer_js/main.js"></script>
+		<script src="../js/customer_js/account.js"></script>
+		<!--script src="../js/customer_js/datepicker.js"></script>
+		<script src="../js/customer_js/plugins.js"></script>
+		<script src="../js/customer_js/main.js"></script-->
 	</body>
 </html>
