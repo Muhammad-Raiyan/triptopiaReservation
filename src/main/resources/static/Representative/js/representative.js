@@ -44,6 +44,7 @@ function addCustomer(){
 	toSend["email"] = $("#addCustomerEmail").val();
 	ajaxWrapperPOST('/home/rep/addCustomer', JSON.stringify(toSend));
 }
+
 function changeCustomer(){
 	var toSend = {};
 	//toSend["accountNo"] = $("#changeCustomerAccountNo").val();
