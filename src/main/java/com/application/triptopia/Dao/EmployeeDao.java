@@ -2,6 +2,7 @@ package com.application.triptopia.Dao;
 
 import com.application.triptopia.Entity.Employee;
 import com.application.triptopia.Entity.Flight;
+import com.application.triptopia.Entity.Reservation;
 
 import java.util.Collection;
 
@@ -19,4 +20,6 @@ public interface EmployeeDao {
     void insertEmployeeToDB(Employee employee);
 
     Collection<Flight> getAllFlight();
+
+    Collection<Reservation> getReservationsByFlightNumber(int flightNo);
 }
