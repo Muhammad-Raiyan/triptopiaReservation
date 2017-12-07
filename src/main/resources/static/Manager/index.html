@@ -192,6 +192,9 @@
 							</div>
 							<div id="changeEmployee" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="changeEmployeeResult">
+										<!--TODO: Database fun-->
+									</div>
 									<form>
 										<div class="form-group">
 											<label for="changeEmployeeSSN">Employee SSN</label>
@@ -219,11 +222,8 @@
 												<input type="number" class="form-control" name="changeEmployeeHourlyRate" id="changeEmployeeHourlyRate" placeholder="15.00">
 											</div>
 										</div>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onCLick="changeEmployee()">Submit</button>
 									</form>
-								</div>
-								<div id="changeEmployeeResult">
-									<!--TODO: Database fun-->
 								</div>
 							</div>
 						</div>
