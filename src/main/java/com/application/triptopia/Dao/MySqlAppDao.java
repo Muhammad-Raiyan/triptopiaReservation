@@ -15,10 +15,13 @@ import java.util.*;
 import java.util.Date;
 
 @Repository("MySQLData")
-public class MySqlEmployeeDao implements EmployeeDao{
+public class MySqlAppDao{
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+
+
 
     private static class EmployeeRowMapper implements RowMapper<Employee>{
         @Override
@@ -30,7 +33,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
             employee.setCity(resultSet.getString("City"));
             employee.setState(resultSet.getString("State"));
             employee.setZipCode(resultSet.getInt("ZipCode"));
-            employee.setZipCode(111);
             employee.setPersonId(resultSet.getInt("Id"));
             employee.setSsn(resultSet.getInt("SSN"));
             employee.setManager(resultSet.getBoolean("IsManager"));
@@ -40,6 +42,24 @@ public class MySqlEmployeeDao implements EmployeeDao{
         }
     }
 
+    private static class CustomerRowMapper implements RowMapper<Customer>{
+        @Override
+        public Customer mapRow(ResultSet resultSet, int i) throws SQLException {
+            Customer customer = new Customer();
+            customer.setFirstName(resultSet.getString("FirstName"));
+            customer.setLastName(resultSet.getString("LastName"));
+            customer.setAddress(resultSet.getString("Address"));
+            customer.setCity(resultSet.getString("City"));
+            customer.setState(resultSet.getString("State"));
+            customer.setZipCode(resultSet.getInt("ZipCode"));
+            customer.setPersonId(resultSet.getInt("Id"));
+            customer.setCreditCardNo(resultSet.getString("creditCardNo"));
+            customer.setEmail(resultSet.getString("email"));
+            customer.setCreationDate(resultSet.getString("creationDate"));
+            customer.setRating(resultSet.getInt("rating"));
+            return customer;
+        }
+    }
     private static class FlightRowMapper implements RowMapper<Flight>{
         @Override
         public Flight mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -85,7 +105,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
         }
     }
 
-    @Override
     public Collection<Employee> getAllEmployee() {
 
         final String sql = "SELECT * FROM reservation_schema.employee e, reservation_schema.person p WHERE p.Id = e.id";
@@ -93,24 +112,16 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return queryViewEmployees;
     }
 
-    @Override
-    public void addEmployee(int key, Employee newEmployee) {
-
-    }
-
-    @Override
     public List<Map<String, Object>> getEmployee(int id) {
         final String sql = "SELECT * FROM reservation_schema.employee em, reservation_schema.person p WHERE p.Id = em.id AND em.SSN = ?";
         return jdbcTemplate.queryForList(sql, id);
     }
 
-    @Override
     public void deleteEmployee(int id) {
         final String sql = "DELETE FROM Employee WHERE Employee.SSN = ?";
         jdbcTemplate.update(sql, id);
     }
 
-    @Override
     public void updateEmployee(Employee employee) {
         final String sql = "UPDATE Employee\n" +
                 "    SET Employee.IsManager=?, Employee.StartDate=?, Employee.HourlyRate=?\n" +
@@ -119,9 +130,10 @@ public class MySqlEmployeeDao implements EmployeeDao{
         jdbcTemplate.update(sql, param);
     }
 
-    @Override
     public void insertEmployeeToDB(Employee employee) {
-        String sqlAddPerson = "INSERT INTO Person(FirstName,LastName,Address,City,State,ZipCode)\n" +
+        Person p = new Person(employee.getFirstName(), employee.getLastName(), employee.getAddress(), employee.getCity(), employee.getState(), employee.getZipCode());
+        Number key = addPerson(p);
+        /*String sqlAddPerson = "INSERT INTO Person(FirstName,LastName,Address,City,State,ZipCode)\n" +
                 "values(?,?,?,?,?,?);";
 
         KeyHolder key = new GeneratedKeyHolder();
@@ -137,27 +149,25 @@ public class MySqlEmployeeDao implements EmployeeDao{
                 ps.setInt(6, employee.getZipCode());
                 return ps;
             }
-        }, key);
+        }, key);*/
 
         String sql = "INSERT INTO reservation_schema.Employee(Id,SSN,IsManager,StartDate,HourlyRate) VALUES (?, ?, ?, ?, ?)";
         DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-        Date date = null;
         try {
-            date = formatter.parse(employee.getStartDate());
+            Date date = formatter.parse(employee.getStartDate());
+            jdbcTemplate.update(sql, key, employee.getSsn(), employee.isManager(), date, employee.getHourlyRate());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        jdbcTemplate.update(sql, key.getKey(), employee.getSsn(), employee.isManager(), date, employee.getHourlyRate());
+
     }
 
-    @Override
     public Collection<Flight> getAllFlight() {
         String sql = "SELECT * FROM flight";
         List<Flight> query = jdbcTemplate.query(sql, new FlightRowMapper());
         return query;
     }
 
-    @Override
     public Collection<Reservation> getReservationsByFlightNumber(String airlineId, int flightNo) {
         String sql = "SELECT DISTINCT reservation.* \n" +
                 "    FROM reservation, includes\n" +
@@ -166,7 +176,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return query;
     }
 
-    @Override
     public Collection<Reservation> getReservationsByCustomerName(String firstName, String lastName) {
         String sql = "SELECT DISTINCT reservation.*\n" +
                 "\tFROM reservation, reservationPassenger, person\n" +
@@ -185,7 +194,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return jdbcTemplate.query(sql, new SalesReportRowMapper(), date, date);
     }
 
-    @Override
     public Collection<Revenue> getRevenueByFlightNumber(String airlineId, int flightNo) {
         String sql = "SELECT SUM(Reservation.BookingFee)+SUM(Reservation.TotalFare) as revenue\n" +
                 "\tFROM Reservation, Includes\n" +
@@ -197,7 +205,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
         //return new ArrayList<Integer>(Arrays.asList(result));
     }
 
-    @Override
     public Collection<Revenue> getRevenueByCity(String city) {
         String sql = "SELECT SUM(Reservation.BookingFee) +SUM(Reservation.TotalFare) as revenue\n" +
                 "\tFROM Reservation, Includes, Leg, Airport\n" +
@@ -210,7 +217,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return jdbcTemplate.query(sql, new RevenueRowMapper(), city);
     }
 
-    @Override
     public Collection<Revenue> getRevenueByCustomer(int accountId) {
         String sql = "SELECT SUM(Reservation.BookingFee) +SUM(Reservation.TotalFare) as revenue\n" +
                 "\tFROM Reservation\n" +
@@ -218,7 +224,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return jdbcTemplate.query(sql, new RevenueRowMapper(), accountId);
     }
 
-    @Override
     public Collection<Employee> getCustomerRepOfMaxRevenue() {
         String s2 = "(SELECT RepSSN FROM (SELECT MAX(sumOfFees) as maxSumOfFees FROM ( SELECT RepSSN, SUM(reservation.BookingFee) as sumOfFees FROM reservation GROUP BY RepSSN) as aa ) as ab, ( SELECT RepSSN, SUM(reservation.BookingFee) as sumOfFees FROM reservation GROUP BY RepSSN ) as aa WHERE aa.sumOfFees = ab.maxSumOfFees)";
         int repSSN = jdbcTemplate.queryForObject(s2, Integer.class);
@@ -227,13 +232,11 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return jdbcTemplate.query(s3, new EmployeeRowMapper(),repSSN);
     }
 
-    @Override
     public List<Map<String, Object>> getMostActiveFlights(){
         String sql = "SELECT FlightNo, AirlineID FROM ( SELECT MAX(numFlights) as maxNumFlights FROM ( SELECT FlightNo, AirlineID, COUNT(*) AS numFlights FROM Leg GROUP BY Leg.FlightNo,Leg.AirlineID) as tmp34) as table1, ( SELECT FlightNo, AirlineID, COUNT(*) AS numFlights FROM Leg GROUP BY Leg.FlightNo,Leg.AirlineID)  as sre  WHERE sre.numFlights = table1.maxNumFlights";
         return jdbcTemplate.queryForList(sql);
     }
 
-    @Override
     public List<Map<String, Object>> getCustomersOnFlight(String airlineId, int flightNo, int legNo) {
         String sql = "SELECT Customer.*\n" +
                 "\tFROM Customer, Includes, Reservation, ReservationPassenger\n" +
@@ -244,5 +247,55 @@ public class MySqlEmployeeDao implements EmployeeDao{
                 "    \tIncludes.AirlineId = ? AND\n" +
                 "    \tIncludes.LegNo = ?";
         return jdbcTemplate.queryForList(sql, flightNo, airlineId, legNo);
+    }
+
+    public void recordReservation(Reservation reservation){
+        String sql = "INSERT IGNORE INTO Reservation(ResrDate, BookingFee, TotalFare, RepSSN, AccountNo)\n" +
+                "    VALUES(?,?,?,?,?)";
+        jdbcTemplate.update(sql, reservation.getReservationAsArray());
+    }
+
+    public void addCustomer(Customer customer){
+
+        Person p = new Person(customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getCity(), customer.getState(), customer.getZipCode());
+        Number key = addPerson(p);
+        String sqlAddCustomer = "INSERT INTO Customer(Id,CreditCardNo, phoneNo, Email,CreationDate,Rating)\n" +
+                "\tvalues(?,?, ?, ?,?, ?)";
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date date = format.parse(customer.getcreationDate());
+            jdbcTemplate.update(sqlAddCustomer, key, customer.getCreditCardNo(), customer.getPhoneNo(), customer.getEmail(), date, customer.getRating());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Number addPerson(Person p){
+        String sqlAddPerson = "INSERT INTO Person(FirstName,LastName,Address,City,State,ZipCode)\n" +
+                "values(?,?,?,?,?,?);";
+
+        KeyHolder key = new GeneratedKeyHolder();
+        //noinspection Duplicates
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps = connection.prepareStatement(sqlAddPerson, new String[]{"firstName", "lastName", "address", "city", "state", "zipCode" });
+                ps.setString(1, p.getFirstName());
+                ps.setString(2, p.getLastName());
+                ps.setString(3, p.getAddress());
+                ps.setString(4, p.getCity());
+                ps.setString(5, p.getState());
+                ps.setInt(6, p.getZipCode());
+                return ps;
+            }
+        }, key);
+
+        return key.getKey();
+    }
+
+    public Collection<Customer> getAllCustomers() {
+        final String sql = "SELECT * FROM reservation_schema.customer c, reservation_schema.person p WHERE p.Id = c.id";
+        List<Customer> queryViewCustomers = jdbcTemplate.query(sql, new CustomerRowMapper());
+        return queryViewCustomers;
     }
 }
