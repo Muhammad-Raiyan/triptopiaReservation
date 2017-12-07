@@ -45,4 +45,8 @@ public class EmployeeService {
     public Collection<Reservation> getReservationsByFlightNumber(String airlineId, int flightNo) {
         return this.employeeDao.getReservationsByFlightNumber(airlineId, flightNo);
     }
+
+    public Collection<Reservation> getReservationsByCustomerName(String firstName, String lastName) {
+        return this.employeeDao.getReservationsByCustomerName(firstName, lastName);
+    }
 }

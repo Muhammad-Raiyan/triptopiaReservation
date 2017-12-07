@@ -152,4 +152,15 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return query;
     }
 
+    @Override
+    public Collection<Reservation> getReservationsByCustomerName(String firstName, String lastName) {
+        String sql = "SELECT DISTINCT Reservation.*\n" +
+                "\tFROM Reservation, ReservationPassenger, Person\n" +
+                "\tWHERE Reservation.ResrNo = ReservationPassenger.ResrNo\n" +
+                "\t\tAND ReservationPassenger.Id = Person.Id \n" +
+                "        AND Person.FirstName = ? AND Person.LastName = ?";
+
+        List<Reservation> query = jdbcTemplate.query(sql, new ReservationRowMapper(), firstName, lastName);
+        return query;
+    }
 }
