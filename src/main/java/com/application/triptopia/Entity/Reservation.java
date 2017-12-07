@@ -1,10 +1,8 @@
 package com.application.triptopia.Entity;
 
-import java.sql.Timestamp;
-
 public class Reservation {
     private int resrNo;
-    private Timestamp resrDate;
+    private String resrDate;
     private double bookingFee;
     private double totalFare;
     private int repSSN;
@@ -13,7 +11,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int resrNo, Timestamp resrDate, double bookingFee, double totalFare, int repSSN, int accountNo) {
+    public Reservation(int resrNo, String resrDate, double bookingFee, double totalFare, int repSSN, int accountNo) {
         this.resrNo = resrNo;
         this.resrDate = resrDate;
         this.bookingFee = bookingFee;
@@ -30,11 +28,11 @@ public class Reservation {
         this.resrNo = resrNo;
     }
 
-    public Timestamp getResrDate() {
+    public String getResrDate() {
         return resrDate;
     }
 
-    public void setResrDate(Timestamp resrDate) {
+    public void setResrDate(String resrDate) {
         this.resrDate = resrDate;
     }
 

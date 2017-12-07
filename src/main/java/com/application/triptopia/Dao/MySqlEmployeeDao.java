@@ -61,7 +61,7 @@ public class MySqlEmployeeDao implements EmployeeDao{
         public Reservation mapRow(ResultSet resultSet, int i) throws SQLException {
             Reservation reservation = new Reservation();
             reservation.setResrNo(resultSet.getInt("resrNo"));
-            reservation.setResrDate(resultSet.getTimestamp("resrDate"));
+            reservation.setResrDate(resultSet.getTimestamp("resrDate").toString());
             reservation.setBookingFee(resultSet.getDouble("bookingFee"));
             reservation.setTotalFare(resultSet.getDouble("totalFare"));
             reservation.setRepSSN(resultSet.getInt("repSSN"));
@@ -151,6 +151,5 @@ public class MySqlEmployeeDao implements EmployeeDao{
         List<Reservation> query = jdbcTemplate.query(sql, new ReservationRowMapper(), airlineId, flightNo);
         return query;
     }
-
 
 }
