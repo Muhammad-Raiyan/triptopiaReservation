@@ -28,7 +28,7 @@ function ajaxWrapperPOST(inUrl, inData){
 	jQuery.ajax({
 		url: inUrl,
 		type: 'POST',
-		data: inData
+		data: inData,
 		headers:{
 			"Content-Type":"application/json"
 		},
@@ -44,7 +44,7 @@ function ajaxWrapperPUT(inUrl, inData){
 	jQuery.ajax({
 		url: inUrl,
 		type: 'PUT',
-		data: inData
+		data: inData,
 		headers:{
 			"Content-Type":"application/json"
 		},
@@ -100,3 +100,5 @@ function viewEmployee(){
 		TableFromJSON(response,"viewEmployeeResult");
 	});
 }
+
+var tmp = 'reservationsByFlight';
