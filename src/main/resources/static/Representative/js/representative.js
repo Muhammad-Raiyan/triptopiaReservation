@@ -24,3 +24,18 @@ function makeOneWayTripReservation(){
 	toSend["meal"]             = $("#makeOneWayTripReservationMeal").val();
 	ajaxWrapperPOST('/home/rep/oneWay', JSON.stringify(toSend));
 }
+
+function addCustomer(){
+	var toSend = {};
+	toSend["firstName"] = $("#addCustomerPersonFirstName").val();
+	toSend["lastName"] = $("#addCustomerPersonLastName").val();
+	toSend["address"] = $("#addCustomerPersonAddress").val();
+	toSend["city"] = $("#addCustomerPersonCity").val();
+	toSend["state"] = $("#addCustomerPersonState").val();
+	toSend["zipCode"] = $("#addCustomerPersonZipCode").val();
+	toSend["phoneNo"] = $("#addCustomerphoneNo").val();
+	toSend["creditCard"] = $("#addCustomerCreditCard").val();
+	toSend["date"] = $("#addCustomerDate").val();
+	toSend["email"] = $("#addCustomerEmail").val();
+	ajaxWrapperPOST('/home/rep/addCustomer', JSON.stringify(toSend));
+}

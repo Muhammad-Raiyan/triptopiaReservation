@@ -7,7 +7,12 @@ function removeEmployee(){
 
 function addEmployee(){
 	var toSend = {};
-	toSend["personId"] = $("#addEmployeePersonZipCode").val();
+	toSend["firstName"] = $("#addEmployeePersonFirstName").val();
+	toSend["lastName"] = $("#addEmployeePersonLastName").val();
+	toSend["address"] = $("#addEmployeePersonAddress").val();
+	toSend["city"] = $("#addEmployeePersonCity").val();
+	toSend["state"] = $("#addEmployeePersonState").val();
+	toSend["zipCode"] = $("#addEmployeePersonZipCode").val();
 	toSend["ssn"] = $("#addEmployeeSSN").val();
 	toSend["isManager"] = $("input[name='addEmployeeIsManager']:checked").val()=="yes";
 	toSend["startDate"] = $("#addEmployeeStartDate").val();
