@@ -62,9 +62,8 @@ function getAllEmployees(){
 		url: '/employee',
 		type: 'GET',
 		success: function(response) {
-			console.log(response);
-			var responseObject = JSON.parse(response);
-			TableFromJSON(responseObject,"getAllEmployeesResult");
+			console.log(JSON.stringify(response);
+			TableFromJSON(response,"getAllEmployeesResult");
 		}
 	});
 }
