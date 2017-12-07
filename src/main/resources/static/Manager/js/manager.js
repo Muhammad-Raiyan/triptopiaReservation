@@ -1,5 +1,5 @@
 function removeEmployee(){
-	var formObject = formToObject("#removeEmployeeForm");
+	//var formObject = formToObject("#removeEmployeeForm");
 	jQuery.ajax({
 		url: '/employee/'+$("#removeEmployeeSSN").val(),
 		type: 'DELETE',
@@ -11,6 +11,7 @@ function removeEmployee(){
 	console.log("Remove\n");
 }
 //TODO decisions to be made
+
 function addEmployee(){
 	//var formObject = formToObject("#addEmployeeForm");
 	var toSend = {};
@@ -28,6 +29,9 @@ function addEmployee(){
 		url: '/employee',
 		type: 'POST',
 		data:toSend,
+		headers:{
+			"Content-Type":"application/json"
+		},
 		success: function(response) {
 		//BLAH
 		console.log("success");
@@ -35,9 +39,10 @@ function addEmployee(){
 	});
 	console.log("Added\n");
 }
+
 //TODO broken on server 12/06 8pm
 function changeEmployee(){
-	var formObject = formToObject("#addEmployeeForm");
+	//var formObject = formToObject("#addEmployeeForm");
 	jQuery.ajax({
 		url: '/employee/'+$("#removeEmployeeSSN").val(),
 		type: 'PUT',
