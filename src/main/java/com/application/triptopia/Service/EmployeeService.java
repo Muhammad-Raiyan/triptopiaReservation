@@ -90,4 +90,8 @@ public class EmployeeService {
     public Collection<Customer> getAllCustomers() {
         return appDao.getAllCustomers();
     }
+
+    public void makeOneWayReservation(Ticket ticket) {
+        appDao.makeOneWayReservation(ticket);
+    }
 }

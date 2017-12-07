@@ -98,7 +98,7 @@ public class AppController {
         appService.recordReservation(reservation);
     }
 
-    @RequestMapping(value = "/rep/insertCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/rep/addCustomer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addCustomer(@RequestBody Customer customer) {
         appService.addCustomer(customer);
     }
@@ -106,5 +106,10 @@ public class AppController {
     @RequestMapping(value = "/rep/allCustomers", method = RequestMethod.GET)
     public Collection<Customer> getAllCustomers() {
         return appService.getAllCustomers();
+    }
+
+    @RequestMapping(value = "/rep/oneWay", method = RequestMethod.POST)
+    public void makeOneWayReservation(@RequestBody Ticket ticket){
+        appService.makeOneWayReservation(ticket);
     }
 }
