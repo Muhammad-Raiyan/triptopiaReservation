@@ -105,3 +105,11 @@ function getReservationsByFlightNumber(){
 		TableFromJSON(response,"getReservationsByFlightResult");
 	});
 }
+
+function getSalesReport(){
+	var url = '/employee/salesReportByMonth/' + $("#getSalesReportMonth").val();
+	ajaxWrapperGET(url, function(response){
+		console.log("Success: " + JSON.stringify(response, null, 2));
+		TableFromJSON(response,"getSalesReportResult");
+	});
+}

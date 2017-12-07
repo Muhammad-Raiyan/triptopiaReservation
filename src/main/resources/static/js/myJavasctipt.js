@@ -35,6 +35,11 @@ function TableFromJSON(jsonVar, tableContainerId){
 				}
 		}
 
+		if(arrItems.length==0){
+			table=document.createElement("p");
+			table.innerHTML = "No Results Found"
+		}
+
 		// FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
 		var divContainer = document.getElementById(tableContainerId);
 		divContainer.innerHTML = "";

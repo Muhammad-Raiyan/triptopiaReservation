@@ -46,7 +46,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button-->
-					<a class="navbar-brand" href="#">Triptopia</a>
+					<a class="navbar-brand" href="/index.html">Triptopia</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
@@ -243,12 +243,14 @@
 							</div>
 							<div id="getSalesReport" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getSalesReportResult">
+									</div>
 									<form>
 										<div class="form-group">
 											<label for="getSalesReportMonth">Month</label>
 											<input type="month" class="form-control" name="getSalesReportMonth" id="getSalesReportMonth" placeholder="mm/yyyy">
 										</div>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getSalesReport()">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -295,7 +297,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** GET RESERVATIONS BY CUSTOMER NAME**************************************-->
+<!--***** GET RESERVATIONS BY CUSTOMER NAME**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
