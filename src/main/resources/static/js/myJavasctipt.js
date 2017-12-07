@@ -1,3 +1,66 @@
+function defaultSuccess(response, textStatus){
+	console.log("Success: " + textStatus + "\n" + JSON.stringify(response, null, 2));
+}
+function defaultFailure(response, textStatus){
+	console.log("Failure: " + textStatus + "\n" + JSON.stringify(response, null, 2));
+}
+function getSuccess(resultId){
+	return function(response, textStatus){
+		console.log("Success: " + JSON.stringify(response, null, 2));
+		TableFromJSON(response, resultId);
+	}
+}
+function getFailure(resultId){
+	return function(response, textStatus){
+		console.log("Failure: " + JSON.stringify(response, null, 2));
+		var divContainer = document.getElementById(resultId);
+		divContainer.innerHTML = "Error Retrieveing Values";
+	}
+}
+
+function ajaxWrapperDELETE(inUrl){
+	jQuery.ajax({
+		url: inUrl,
+		type: 'DELETE',
+		success: defaultSuccess,
+		error: defaultFailure
+	});
+	console.log("hello2");
+}
+function ajaxWrapperGET(inUrl, resultId){
+	jQuery.ajax({
+		url: inUrl,
+		type: 'GET',
+		success: getSuccess(resultId),
+		error: getFailure(resultId)
+	});
+}
+function ajaxWrapperPOST(inUrl, inData){
+	jQuery.ajax({
+		url: inUrl,
+		type: 'POST',
+		data: inData,
+		headers:{
+			"Content-Type":"application/json"
+		},
+		success: defaultSuccess,
+		error: defaultFailure
+	});
+}
+function ajaxWrapperPUT(inUrl, inData){
+	jQuery.ajax({
+		url: inUrl,
+		type: 'PUT',
+		data: inData,
+		headers:{
+			"Content-Type":"application/json"
+		},
+		success: defaultSuccess,
+		error: defaultFailure
+	});
+}
+
+
 function TableFromJSON(jsonVar, tableContainerId){
 		var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
 		$.each(jsonVar, function (index, value) {
