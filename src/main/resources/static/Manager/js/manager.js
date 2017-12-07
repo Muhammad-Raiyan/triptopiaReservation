@@ -67,3 +67,14 @@ function getAllEmployees(){
 		}
 	});
 }
+
+function getFlightListing(){
+	jQuery.ajax({
+		url: '/employee/flights',
+		type: 'GET',
+		success: function(response) {
+			console.log(JSON.stringify(response));
+			TableFromJSON(response,"getFlightListingResult");
+		}
+	});
+}

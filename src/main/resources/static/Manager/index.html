@@ -20,6 +20,13 @@
 			body {
 				padding-top: 6rem;
 			}
+
+			.inverted{
+				filter: invert(100%);
+			}
+			.backgroundInvert{
+				background-color:black;
+			}
 		</style>
 	</head>
 
@@ -36,15 +43,33 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
+						<li><a href="#" onClick="$('#largeOuterContainer').toggleClass('inverted');$('body').toggleClass('backgroundInvert');">Toggle Night Mode</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
 
-		<div class="container">
+		<div class="container" id="largeOuterContainer">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 					<div class="panel-group" id="accordion">
+<!--*** GET ALL EMPLOYEES **************************************-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#getAllEmployees">Get all employees</a>
+								</h4>
+							</div>
+							<div id="getAllEmployees" class="panel-collapse collapse">
+								<div class="panel-body">
+									<div id="getAllEmployeesResult">
+									</div>
+									<form>
+										<button type="button" class="btn btn-default" onClick="getAllEmployees()">Submit</button>
+									</form>
+								</div>
+							</div>
+						</div>
 <!--*** ADD EMPLOYEE ******************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -208,10 +233,12 @@
 							</div>
 							<div id="getFlightListing" class="panel-collapse collapse">
 								<div class="panel-body">
-								<form>
-									<button type="button" class="btn btn-default">Submit</button>
-								</form>
-							</div>
+									<div id="getFlightListingResult">
+									</div>
+									<form>
+										<button type="button" class="btn btn-default" onClick="getFlightListing()">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
 <!--*** GET RESERVATIONS BY FLIGHT NUMBER**************************************-->
@@ -376,23 +403,6 @@
 										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
-							</div>
-						</div>
-<!--*** GET FLIGHT LISTING **************************************-->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#getAllEmployees">Get all employees</a>
-								</h4>
-							</div>
-							<div id="getAllEmployees" class="panel-collapse collapse">
-								<div class="panel-body">
-								<form>
-									<button type="button" class="btn btn-default" onClick="getAllEmployees()">Submit</button>
-								</form>
-								<div id="getAllEmployeesResult">
-								</div>
-							</div>
 							</div>
 						</div>
 
