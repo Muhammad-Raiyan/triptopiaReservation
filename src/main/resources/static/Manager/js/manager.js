@@ -15,13 +15,7 @@ function removeEmployee(){
 function addEmployee(){
 	//var formObject = formToObject("#addEmployeeForm");
 	var toSend = {};
-	toSend["firstName"] = $("#addEmployeePersonFirstName").val();
-	toSend["lastName"] = $("#addEmployeePersonLastName").val();
-	toSend["address"] = $("#addEmployeePersonAddress").val();
-	toSend["city"] = $("#addEmployeePersonCity").val();
-	toSend["state"] = $("#addEmployeePersonState").val();
-	toSend["zipCode"] = $("#addEmployeePersonZipCode").val();
-	//toSend["personId"] = $("#addEmployeePersonZipCode").val();
+	toSend["personId"] = $("#addEmployeePersonZipCode").val();
 	toSend["ssn"] = $("#addEmployeeSSN").val();
 	toSend["isManager"] = $("input[name='addEmployeeIsManager']:checked").val()=="yes";
 	toSend["startDate"] = $("#addEmployeeStartDate").val();
@@ -41,17 +35,36 @@ function addEmployee(){
 	console.log("Added\n");
 }
 
-//TODO broken on server 12/06 8pm
 function changeEmployee(){
-	//var formObject = formToObject("#addEmployeeForm");
+	var toSend = {};
+	toSend["ssn"] = $("#addEmployeeSSN").val();
+	toSend["isManager"] = $("input[name='addEmployeeIsManager']:checked").val()=="yes";
+	toSend["startDate"] = $("#addEmployeeStartDate").val();
+	toSend["hourlyRate"] = $("#addEmployeeHourlyRate").val();
 	jQuery.ajax({
-		url: '/employee/'+$("#removeEmployeeSSN").val(),
+		url: '/employee',
 		type: 'PUT',
-		data:formObject,
+		headers:{
+			"Content-Type":"application/json"
+		},
+		data: JSON.stringify(toSend),
 		success: function(response) {
 		//BLAH
 		console.log("success");
 		}
 	});
 	console.log("Added\n");
+}
+
+
+function getAllEmployees(){
+	jQuery.ajax({
+		url: '/employee',
+		type: 'GET',
+		success: function(response) {
+			console.log(response);
+			var responseObject = JSON.parse(response);
+			TableFromJSON(responseObject,"getAllEmployeesResult");
+		}
+	});
 }
