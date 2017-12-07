@@ -1,9 +1,9 @@
 //onClick functions
-function defaultSuccess(response){
-	console.log("Success: " + JSON.stringify(response, null, 2));
+function defaultSuccess(response, textStatus){
+	console.log("Success: " + textStatus + "\n" + JSON.stringify(response, null, 2));
 }
-function defaultFailure(response){
-	console.log("Failure: " + JSON.stringify(response, null, 2));
+function defaultFailure(response, textStatus){
+	console.log("Failure: " + textStatus + "\n" + JSON.stringify(response, null, 2));
 }
 function ajaxWrapperDELETE(inUrl){
 	jQuery.ajax({
@@ -71,7 +71,7 @@ function changeEmployee(){
 
 function getAllEmployees(){
 	ajaxWrapperGET('/employee/allEmployees', function(response) {
-		console.log(JSON.stringify(response));
+		console.log("Success: " + JSON.stringify(response, null, 2));
 		TableFromJSON(response,"getAllEmployeesResult");
 	});
 }
@@ -85,7 +85,7 @@ function getFlightListing(){
 
 function viewEmployee(){
 	ajaxWrapperGET('/employee/get/'+$("#viewEmployeeSSN").val(), function(response) {
-		console.log(JSON.stringify(response));
+		console.log("Success: " + JSON.stringify(response, null, 2));
 		TableFromJSON([response],"viewEmployeeResult");
 	});
 }
