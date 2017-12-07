@@ -219,5 +219,31 @@ public class MySqlEmployeeDao implements EmployeeDao{
         return jdbcTemplate.query(sql, new RevenueRowMapper(), accountId);
     }
 
+    @Override
+    public Collection<Employee> getCustomerRepOfMaxRevenue() {
+        String s2 = "(SELECT RepSSN FROM (SELECT MAX(sumOfFees) as maxSumOfFees FROM ( SELECT RepSSN, SUM(reservation.BookingFee) as sumOfFees FROM reservation GROUP BY RepSSN) as aa ) as ab, ( SELECT RepSSN, SUM(reservation.BookingFee) as sumOfFees FROM reservation GROUP BY RepSSN ) as aa WHERE aa.sumOfFees = ab.maxSumOfFees)";
+        int repSSN = jdbcTemplate.queryForObject(s2, Integer.class);
+        String s3 = "SELECT * FROM employee e, person p WHERE e.SSN = ? AND e.Id = p.Id";
 
+        return jdbcTemplate.query(s3, new EmployeeRowMapper(),repSSN);
+    }
+
+    @Override
+    public List<Map<String, Object>> getMostActiveFlights(){
+        String sql = "SELECT FlightNo, AirlineID FROM ( SELECT MAX(numFlights) as maxNumFlights FROM ( SELECT FlightNo, AirlineID, COUNT(*) AS numFlights FROM Leg GROUP BY Leg.FlightNo,Leg.AirlineID) as tmp34) as table1, ( SELECT FlightNo, AirlineID, COUNT(*) AS numFlights FROM Leg GROUP BY Leg.FlightNo,Leg.AirlineID)  as sre  WHERE sre.numFlights = table1.maxNumFlights";
+        return jdbcTemplate.queryForList(sql);
+    }
+
+    @Override
+    public List<Map<String, Object>> getCustomersOnFlight(String airlineId, int flightNo, int legNo) {
+        String sql = "SELECT Customer.*\n" +
+                "\tFROM Customer, Includes, Reservation, ReservationPassenger\n" +
+                "\tWHERE Includes.ResrNo = Reservation.ResrNo AND\n" +
+                "   \t Reservation.ResrNo = ReservationPassenger.ResrNo AND\n" +
+                "   \t ReservationPassenger.AccountNo = Customer.AccountNo AND\n" +
+                "   \t Includes.FlightNo = ? AND\n" +
+                "    \tIncludes.AirlineId = ? AND\n" +
+                "    \tIncludes.LegNo = ?";
+        return jdbcTemplate.queryForList(sql, flightNo, airlineId, legNo);
+    }
 }

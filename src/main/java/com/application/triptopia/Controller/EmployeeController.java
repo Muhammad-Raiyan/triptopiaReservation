@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/employee")
@@ -15,63 +17,77 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @RequestMapping(value = "/allEmployees", method = RequestMethod.GET)
-    public Collection<Employee> getAllEmployee(){
+    public Collection<Employee> getAllEmployee() {
         return employeeService.getAllEmployee();
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Employee getEmployee(@PathVariable("id") int id){
+    public Employee getEmployee(@PathVariable("id") int id) {
         return this.employeeService.getEmployee(id);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void deleteEmployee(@PathVariable("id") int id){
+    public void deleteEmployee(@PathVariable("id") int id) {
         employeeService.deleteEmployee(id);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateEmployee(@RequestBody Employee employee){
+    public void updateEmployee(@RequestBody Employee employee) {
         employeeService.updateEmployee(employee);
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void insertEmployee(@RequestBody Employee employee){
+    public void insertEmployee(@RequestBody Employee employee) {
         System.out.println("IN insert employee");
         employeeService.insertEmployee(employee);
     }
 
-    @RequestMapping(value="/allFlights", method = RequestMethod.GET)
-    public Collection<Flight> getListOfFlight(){
+    @RequestMapping(value = "/allFlights", method = RequestMethod.GET)
+    public Collection<Flight> getListOfFlight() {
         return employeeService.getAllFlights();
     }
 
-    @RequestMapping(value="/reservationsByFlightNumber/{airlineId}/{flightNo}", method = RequestMethod.GET)
-    public Collection<Reservation> getReservationsByFlightNumber(@PathVariable("airlineId") String airlineId, @PathVariable("flightNo") int flightNo){
+    @RequestMapping(value = "/reservationsByFlightNumber/{airlineId}/{flightNo}", method = RequestMethod.GET)
+    public Collection<Reservation> getReservationsByFlightNumber(@PathVariable("airlineId") String airlineId, @PathVariable("flightNo") int flightNo) {
         return employeeService.getReservationsByFlightNumber(airlineId, flightNo);
     }
 
-    @RequestMapping(value="/reservationsByCustomerName/{firstName}/{lastName}", method = RequestMethod.GET)
-    public Collection<Reservation> getReservationsByCustomerName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName){
+    @RequestMapping(value = "/reservationsByCustomerName/{firstName}/{lastName}", method = RequestMethod.GET)
+    public Collection<Reservation> getReservationsByCustomerName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
         return employeeService.getReservationsByCustomerName(firstName, lastName);
     }
 
-    @RequestMapping(value="/salesReport/{date}", method = RequestMethod.GET)
-    public Collection<SalesReport> getSalesReport(@PathVariable("date") String date){
+    @RequestMapping(value = "/salesReport/{date}", method = RequestMethod.GET)
+    public Collection<SalesReport> getSalesReport(@PathVariable("date") String date) {
         return employeeService.getSalesReport(date);
     }
 
-    @RequestMapping(value="/revenueByFlight/{airlineId}/{flightNo}", method = RequestMethod.GET)
-    public Collection<Revenue> getRevenueByFlightNumber(@PathVariable("airlineId") String airlineId, @PathVariable("flightNo") int flightNo){
+    @RequestMapping(value = "/revenueByFlight/{airlineId}/{flightNo}", method = RequestMethod.GET)
+    public Collection<Revenue> getRevenueByFlightNumber(@PathVariable("airlineId") String airlineId, @PathVariable("flightNo") int flightNo) {
         return employeeService.getRevenueByFlightNumber(airlineId, flightNo);
     }
 
-    @RequestMapping(value="/revenueByDestinationCity/{city}", method = RequestMethod.GET)
-    public Collection<Revenue> getRevenueByDestinationCity(@PathVariable("city") String airlineId){
+    @RequestMapping(value = "/revenueByDestinationCity/{city}", method = RequestMethod.GET)
+    public Collection<Revenue> getRevenueByDestinationCity(@PathVariable("city") String airlineId) {
         return employeeService.getRevenueByCity(airlineId);
     }
 
-    @RequestMapping(value="/revenueByCustomer/{accountId}", method = RequestMethod.GET)
-    public Collection<Revenue> getRevenueByCustomer(@PathVariable("accountId") int accountId){
+    @RequestMapping(value = "/revenueByCustomer/{accountId}", method = RequestMethod.GET)
+    public Collection<Revenue> getRevenueByCustomer(@PathVariable("accountId") int accountId) {
         return employeeService.getRevenueByCustomer(accountId);
+    }
+    @RequestMapping(value="/customerOfMaxRevenue", method = RequestMethod.GET)
+    public Collection<Employee>  getCustomerRepOfMaxRevenue(){
+        return employeeService.getCustomerRepOfMaxRevenue();
+    }
+
+    @RequestMapping(value = "/mostActiveFlights", method = RequestMethod.GET)
+    public List<Map<String, Object>> getMostActiveFlights(){
+        return employeeService.getMostActiveFlights();
+    }
+
+    @RequestMapping(value = "/customersOnFlight/{airlineId}/{flightNo}/{legNo}", method = RequestMethod.GET)
+    public List<Map<String, Object>> getCustomersOnFlight(@PathVariable("airlineId") String airlineId, @PathVariable("flightNo") int flightNo, @PathVariable("legNo") int legNo){
+        return employeeService.getCustomersOnFlight(airlineId, flightNo, legNo);
     }
 }

@@ -80,3 +80,4 @@ function getCustomersOnFlight(){
 	var url = '/employee/customersOnFlight/' + $("#getCustomersOnFlightAirline").val() + '/' + $("#getCustomersOnFlightNumber").val() + '/' + $("#getCustomersOnFlightLeg").val();
 	ajaxWrapperGET(url, "getCustomersOnFlightResult");
 }
+

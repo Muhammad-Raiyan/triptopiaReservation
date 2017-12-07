@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Qualifier("MySQLData")
@@ -63,5 +65,18 @@ public class EmployeeService {
 
     public Collection<Revenue> getRevenueByCustomer(int accountId) {
         return this.employeeDao.getRevenueByCustomer(accountId);
+    }
+
+    public Collection<Employee> getCustomerRepOfMaxRevenue() {
+
+        return this.employeeDao.getCustomerRepOfMaxRevenue();
+    }
+
+    public List<Map<String, Object>> getMostActiveFlights() {
+        return this.employeeDao.getMostActiveFlights();
+    }
+
+    public List<Map<String, Object>> getCustomersOnFlight(String airlineId, int flightNo, int legNo) {
+        return this.employeeDao.getCustomersOnFlight(airlineId, flightNo, legNo);
     }
 }
