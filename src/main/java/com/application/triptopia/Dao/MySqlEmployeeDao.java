@@ -2,10 +2,9 @@ package com.application.triptopia.Dao;
 
 import com.application.triptopia.Entity.Employee;
 import com.application.triptopia.Entity.Flight;
+import com.application.triptopia.Entity.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.*;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -24,7 +23,6 @@ public class MySqlEmployeeDao implements EmployeeDao{
     private JdbcTemplate jdbcTemplate;
 
     private static class EmployeeRowMapper implements RowMapper<Employee>{
-
         @Override
         public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
             Employee employee = new Employee();
@@ -55,6 +53,20 @@ public class MySqlEmployeeDao implements EmployeeDao{
             flight.setMaxLengthOfStay(resultSet.getInt("maxLengthOfStay"));
             flight.setMinLengthOfStay(resultSet.getInt("minLengthOfStay"));
             return flight;
+        }
+    }
+
+    private static class ReservationRowMapper implements RowMapper<Reservation> {
+        @Override
+        public Reservation mapRow(ResultSet resultSet, int i) throws SQLException {
+            Reservation reservation = new Reservation();
+            reservation.setResrNo(resultSet.getInt("resrNo"));
+            reservation.setResrDate(resultSet.getTimestamp("resrDate"));
+            reservation.setBookingFee(resultSet.getDouble("bookingFee"));
+            reservation.setTotalFare(resultSet.getDouble("totalFare"));
+            reservation.setRepSSN(resultSet.getInt("repSSN"));
+            reservation.setAccountNo(resultSet.getInt("accountNo"));
+            return reservation;
         }
     }
 
@@ -126,8 +138,19 @@ public class MySqlEmployeeDao implements EmployeeDao{
 
     @Override
     public Collection<Flight> getAllFlight() {
-        String sql = " SELECT * FROM Flight";
+        String sql = "SELECT * FROM flight";
         List<Flight> query = jdbcTemplate.query(sql, new FlightRowMapper());
         return query;
     }
+
+    @Override
+    public Collection<Reservation> getReservationsByFlightNumber(int flightNo) {
+        String sql = "SELECT DISTINCT reservation.* \n" +
+                "    FROM reservation, includes\n" +
+                "WHERE reservation.ResrNo = includes.ResrNo AND includes.FlightNo = ?";
+        List<Reservation> query = jdbcTemplate.query(sql, new ReservationRowMapper(), flightNo);
+        return query;
+    }
+
+
 }

@@ -1,11 +1,11 @@
 package com.application.triptopia.Entity;
 
 public class Employee extends Person {
-    public int personId;
-    public int ssn;
-    boolean isManager;
-    public String startDate;
-    double hourlyRate;
+    private int personId;
+    private int ssn;
+    private boolean isManager;
+    private String startDate;
+    private double hourlyRate;
 
     public Employee() {
     }
