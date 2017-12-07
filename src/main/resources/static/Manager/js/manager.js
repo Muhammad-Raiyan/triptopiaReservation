@@ -5,6 +5,20 @@ function defaultSuccess(response, textStatus){
 function defaultFailure(response, textStatus){
 	console.log("Failure: " + textStatus + "\n" + JSON.stringify(response, null, 2));
 }
+function getSuccess(resultId){
+	return function(response, textStatus){
+		console.log("Success: " + JSON.stringify(response, null, 2));
+		TableFromJSON(response, resultId);
+	}
+}
+function getFailure(resultId){
+	return function(response, textStatus){
+		console.log("Failure: " + JSON.stringify(response, null, 2));
+		var divContainer = document.getElementById(resultId);
+		divContainer.innerHTML = "Error Retrieveing Values";
+	}
+}
+
 function ajaxWrapperDELETE(inUrl){
 	jQuery.ajax({
 		url: inUrl,
@@ -12,13 +26,14 @@ function ajaxWrapperDELETE(inUrl){
 		success: defaultSuccess,
 		error: defaultFailure
 	});
+	console.log("hello2");
 }
-function ajaxWrapperGET(inUrl, successFunction){
+function ajaxWrapperGET(inUrl, resultId){
 	jQuery.ajax({
 		url: inUrl,
 		type: 'GET',
-		success: successFunction,
-		error: defaultFailure
+		success: getSuccess(resultId),
+		error: getFailure(resultId)
 	});
 }
 function ajaxWrapperPOST(inUrl, inData){
@@ -47,7 +62,8 @@ function ajaxWrapperPUT(inUrl, inData){
 }
 
 function removeEmployee(){
-	ajaxWrapperDELETE('/employee/delete/'+$("#removeEmployeeSSN").val());
+	var url = '/employee/delete/' + $("#removeEmployeeSSN").val();
+	ajaxWrapperDELETE(url);
 }
 
 function addEmployee(){
@@ -70,46 +86,58 @@ function changeEmployee(){
 }
 
 function getAllEmployees(){
-	ajaxWrapperGET('/employee/allEmployees', function(response) {
-		console.log("Success: " + JSON.stringify(response, null, 2));
-		TableFromJSON(response,"getAllEmployeesResult");
-	});
+	ajaxWrapperGET('/employee/allEmployees', "getAllEmployeesResult");
 }
 
 function getFlightListing(){
-	ajaxWrapperGET('/employee/allFlights', function(response) {
-		console.log(JSON.stringify(response));
-		TableFromJSON(response,"getFlightListingResult");
-	});
+	ajaxWrapperGET('/employee/allFlights', "getFlightListingResult");
 }
 
 function viewEmployee(){
-		ajaxWrapperGET('/employee/get/'+$("#viewEmployeeSSN").val(), function(response) {
-		console.log("Success: " + JSON.stringify(response, null, 2));
-		TableFromJSON([response],"viewEmployeeResult");
-	});
+		ajaxWrapperGET('/employee/get/'+$("#viewEmployeeSSN").val(), "viewEmployeeResult");
 }
 
 function getReservationsByCustomerName(){
 	var url = '/employee/reservationsByCustomerName/' + $("#getReservationsByCustomerNameFirst").val() + '/' + $("#getReservationsByCustomerNameLast").val();
-	ajaxWrapperGET(url, function(response){
-		console.log("Success: " + JSON.stringify(response, null, 2));
-		TableFromJSON(response,"getReservationsByCustomerNameResult");
-	});
+	ajaxWrapperGET(url, "getReservationsByCustomerNameResult");
 }
 
 function getReservationsByFlightNumber(){
 	var url = '/employee/reservationsByFlightNumber/' + $("#getReservationsByFlightNumberAirline").val() + '/' + $("#getReservationsByFlightNumberNumber").val();
-	ajaxWrapperGET(url, function(response){
-		console.log("Success: " + JSON.stringify(response, null, 2));
-		TableFromJSON(response,"getReservationsByFlightResult");
-	});
+	ajaxWrapperGET(url, "getReservationsByFlightResult");
 }
 
 function getSalesReport(){
-	var url = '/employee/salesReportByMonth/' + $("#getSalesReportMonth").val();
-	ajaxWrapperGET(url, function(response){
-		console.log("Success: " + JSON.stringify(response, null, 2));
-		TableFromJSON(response,"getSalesReportResult");
-	});
+	var url = '/employee/salesReport/' + $("#getSalesReportMonth").val();
+	ajaxWrapperGET(url, "getSalesReportResult");
+}
+
+function getRevenueByFlight(){
+	var url = '/employee/revenueByFlight/' + $("#getRevenueByFlightAirline").val() + '/' + $("#getRevenueByFlightNumber").val();
+	ajaxWrapperGET(url, "getRevenueByFlightResult");
+}
+
+function getRevenueByDestinationCity(){
+	var url = '/employee/revenueByDestinationCity/' + $("#getRevenueByDestinationCityCity").val();
+	ajaxWrapperGET(url, "getRevenueByDestinationCityResult");
+}
+
+function getRevenueByCustomer(){
+	var url = '/employee/revenueByCustomer/' + $("#getRevenueByCustomerAccountId").val();
+	ajaxWrapperGET(url, "getRevenueByCustomerResult");
+}
+
+function getCustomerOfMaxRevenue(){
+	var url = '/employee/customerOfMaxRevenue/';
+	ajaxWrapperGET(url, "getCustomerOfMaxRevenueResult");
+}
+
+function getMostActiveFlights(){
+	var url = '/employee/mostActiveFlights/';
+	ajaxWrapperGET(url, "getMostActiveFlightsResult");
+}
+
+function getCustomersOnFlight(){
+	var url = '/employee/customersOnFlight/' + $("#getCustomersOnFlightAirline").val() + '/' + $("#getCustomersOnFlightNumber").val() + '/' + $("#getCustomersOnFlightLeg").val();
+	ajaxWrapperGET(url, "getCustomersOnFlightResult");
 }

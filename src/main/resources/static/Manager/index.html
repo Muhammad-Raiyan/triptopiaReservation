@@ -234,7 +234,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** GET SALES REPORT **************************************-->
+<!--***** GET SALES REPORT **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -286,7 +286,7 @@
 									<form>
 										<div class="form-group">
 											<label for="getReservationsByFlightNumberAirline">Airline Id</label>
-											<input type="text" class="form-control" name="getReservationsByFlightNumberAirline" id="getReservationsByFlightNumberAirline" placeholder="JFK">
+											<input type="text" class="form-control" name="getReservationsByFlightNumberAirline" id="getReservationsByFlightNumberAirline" placeholder="AA">
 										</div>
 										<div class="form-group">
 											<label for="getReservationsByFlightNumberNumber">Flight Number</label>
@@ -322,7 +322,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** GET REVENUE BY FLIGHT**************************************-->
+<!--***** GET REVENUE BY FLIGHT**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -331,21 +331,22 @@
 							</div>
 							<div id="getRevenueByFlight" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getRevenueByFlightResult"></div>
 									<form>
 										<div class="form-group">
 											<label for="getRevenueByFlightAirline">Airline Id</label>
-											<input type="text" class="form-control" name="getRevenueByFlightAirline" id="getRevenueByFlightAirline" placeholder="JFK">
+											<input type="text" class="form-control" name="getRevenueByFlightAirline" id="getRevenueByFlightAirline" placeholder="AA">
 										</div>
 										<div class="form-group">
 											<label for="getRevenueByFlightNumber">Flight Number</label>
 											<input type="number" class="form-control" name="getRevenueByFlightNumber" id="getRevenueByFlightNumber" placeholder="0">
 										</div>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getRevenueByFlight()">Submit</button>
 									</form>
 								</div>
 							</div>
 						</div>
-<!--*** GET REVENUE BY DESTINATION CITY**************************************-->
+<!--***** GET REVENUE BY DESTINATION CITY**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -354,17 +355,18 @@
 							</div>
 							<div id="getRevenueByDestinationCity" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getRevenueByDestinationCityResult"></div>
 									<form>
 										<div class="form-group">
 											<label for="getRevenueByDestinationCityCity">City</label>
 											<input type="text" class="form-control" name="getRevenueByDestinationCityCity" id="getRevenueByDestinationCityCity" placeholder="New York">
 										</div>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getRevenueByDestinationCity()">Submit</button>
 									</form>
 								</div>
 							</div>
 						</div>
-<!--*** GET REVENUE BY CUSTOMER**************************************-->
+<!--***** GET REVENUE BY CUSTOMER**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -373,17 +375,18 @@
 							</div>
 							<div id="getRevenueByCustomer" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getRevenueByCustomerResult"></div>
 									<form>
 										<div class="form-group">
 											<label for="getRevenueByCustomerAccountId">Customer Account Id</label>
 											<input type="number" class="form-control" name="getRevenueByCustomerAccountId" id="getRevenueByCustomerAccountId" placeholder="0">
 										</div>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getRevenueByCustomer()">Submit</button>
 									</form>
 								</div>
 							</div>
 						</div>
-<!--*** GET CUSTOMER OF MAX REVENUE**************************************-->
+<!--***** GET CUSTOMER OF MAX REVENUE**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -392,13 +395,14 @@
 							</div>
 							<div id="getCustomerOfMaxRevenue" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getCustomerOfMaxRevenueResult"></div>
 									<form>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getCustomerOfMaxRevenue()">Submit</button>
 									</form>
 								</div>
 							</div>
 						</div>
-<!--*** GET MOST ACTIVE FLIGHTS**************************************-->
+<!--***** GET MOST ACTIVE FLIGHTS**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -407,13 +411,14 @@
 							</div>
 							<div id="getMostActiveFlights" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getMostActiveFlightsResult"></div>
 									<form>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getMostActiveFlights()">Submit</button>
 									</form>
 								</div>
 							</div>
 						</div>
-<!--*** GET CUSTOMERS ON A GIVEN FLIGHT**************************************-->
+<!--***** GET CUSTOMERS ON A GIVEN FLIGHT**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -422,10 +427,11 @@
 							</div>
 							<div id="getCustomersOnFlight" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getCustomersOnFlightResult"></div>
 									<form>
 										<div class="form-group">
 											<label for="getCustomersOnFlightAirline">Airline Id</label>
-											<input type="text" class="form-control" name="getCustomersOnFlightAirline" id="getCustomersOnFlightAirline" placeholder="JFK">
+											<input type="text" class="form-control" name="getCustomersOnFlightAirline" id="getCustomersOnFlightAirline" placeholder="AA">
 										</div>
 										<div class="form-group">
 											<label for="getCustomersOnFlightNumber">Flight Number</label>
@@ -435,7 +441,7 @@
 											<label for="getCustomersOnFlightLeg">Leg Number</label>
 											<input type="number" class="form-control" name="getCustomersOnFlightLeg" id="getCustomersOnFlightLeg" placeholder="0">
 										</div>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getCustomersOnFlight()">Submit</button>
 									</form>
 								</div>
 							</div>
