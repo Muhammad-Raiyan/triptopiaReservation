@@ -90,6 +90,14 @@ function viewEmployee(){
 	});
 }
 
+function getReservationsByCustomerName(){
+	var url = '/employee/reservationsByCustomerName/' + $("#getReservationsByCustomerNameFirst").val() + '/' + $("#getReservationsByCustomerNameLast").val();
+	ajaxWrapperGET(url, function(response){
+		console.log("Success: " + JSON.stringify(response, null, 2));
+		TableFromJSON(response,"getReservationsByCustomerNameResult");
+	});
+}
+
 function getReservationsByFlightNumber(){
 	var url = '/employee/reservationsByFlightNumber/' + $("#getReservationsByFlightNumberAirline").val() + '/' + $("#getReservationsByFlightNumberNumber").val();
 	ajaxWrapperGET(url, function(response){
