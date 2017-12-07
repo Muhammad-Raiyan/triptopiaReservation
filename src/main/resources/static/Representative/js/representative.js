@@ -46,12 +46,13 @@ function addCustomer(){
 }
 function changeCustomer(){
 	var toSend = {};
-	toSend["accountNo"] = $("#changeCustomerAccountNo").val();
+	//toSend["accountNo"] = $("#changeCustomerAccountNo").val();
 	toSend["phoneNo"] = $("#addCustomerPhoneNo").val();
 	toSend["creditCardNo"] = $("#addCustomerCreditCard").val();
 	toSend["creationDate"] = $("#addCustomerDate").val();
 	toSend["email"] = $("#addCustomerEmail").val();
-	ajaxWrapperPUT('/home/rep/updateCustomer', JSON.stringify(toSend));
+	var url = '/home/rep/updateCustomer' + $("#changeCustomerAccountNo").val()
+	ajaxWrapperPUT(url, JSON.stringify(toSend));
 }
 
 function deleteCustomer(){
