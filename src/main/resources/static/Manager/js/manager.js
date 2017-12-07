@@ -1,17 +1,16 @@
 //onClick functions
 function defaultSuccess(response){
-	console.log("Success: " + JSON.stringify(response));
+	console.log("Success: " + JSON.stringify(response, null, 2));
+}
+function defaultFailure(response){
+	console.log("Failure: " + JSON.stringify(response, null, 2));
 }
 function ajaxWrapperDELETE(inUrl){
 	jQuery.ajax({
 		url: inUrl,
 		type: 'DELETE',
-		success: function(response) {
-			console.log("Success: " + JSON.stringify(response));
-		},
-		error: function(response) {
-			console.log(JSON.stringify(response));
-		}
+		success: defaultSuccess,
+		error: defaultFailure
 	});
 }
 function ajaxWrapperGET(inUrl, successFunction){
@@ -19,9 +18,7 @@ function ajaxWrapperGET(inUrl, successFunction){
 		url: inUrl,
 		type: 'GET',
 		success: successFunction,
-		error: function(response) {
-			console.log(JSON.stringify(response));
-		}
+		error: defaultFailure
 	});
 }
 function ajaxWrapperPOST(inUrl, inData){
@@ -32,12 +29,8 @@ function ajaxWrapperPOST(inUrl, inData){
 		headers:{
 			"Content-Type":"application/json"
 		},
-		success: function(response) {
-			console.log("Success: " + JSON.stringify(response));
-		},
-		error: function(response) {
-			console.log(JSON.stringify(response));
-		}
+		success: defaultSuccess,
+		error: defaultFailure
 	});
 }
 function ajaxWrapperPUT(inUrl, inData){
@@ -48,12 +41,8 @@ function ajaxWrapperPUT(inUrl, inData){
 		headers:{
 			"Content-Type":"application/json"
 		},
-		success: function(response) {
-			console.log("Success: " + JSON.stringify(response));
-		},
-		error: function(response) {
-			console.log(JSON.stringify(response));
-		}
+		success: defaultSuccess,
+		error: defaultFailure
 	});
 }
 
@@ -97,7 +86,7 @@ function getFlightListing(){
 function viewEmployee(){
 	ajaxWrapperGET('/employee/get/'+$("#viewEmployeeSSN").val(), function(response) {
 		console.log(JSON.stringify(response));
-		TableFromJSON(response,"viewEmployeeResult");
+		TableFromJSON([response],"viewEmployeeResult");
 	});
 }
 
