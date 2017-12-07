@@ -41,26 +41,106 @@
 			<div class="row">
 				<div class="col-sm-8 col-sm-offset-2 col-sm-10 col-sm-offset-1">
 					<div class="panel-group" id="accordion">
-
+<!--*** MAKE ROUND TRIP RESERVATION**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Make Round-Trip Reservation</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#makeRoundTripReservation">Make Round-Trip Reservation</a>
 								</h4>
 							</div>
-							<div id="collapse1" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="makeRoundTripReservation" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="makeRoundTripReservationAccountNumber">Customer Account Number</label>
+											<input type="number" class="form-control" name="makeRoundTripReservationAccountNumber" id="makeRoundTripReservationAccountNumber" placeholder="0">
+										</div>
+										<hr />
+										<div class="form-group">
+											<label for="makeRoundTripReservationFromAirline">Departure Airline Id</label>
+											<input type="text" class="form-control" name="makeRoundTripReservationFromAirline" id="makeRoundTripReservationFromAirline" placeholder="JFK">
+										</div>
+										<div class="form-group">
+											<label for="makeRoundTripReservationFromNumber">Departure Flight Number</label>
+											<input type="number" class="form-control" name="makeRoundTripReservationFromNumber" id="makeRoundTripReservationFromNumber" placeholder="0">
+										</div>
+										<div class="form-group">
+											<label for="makeRoundTripReservationFromLeg">Departure Flight Leg Number</label>
+											<input type="number" class="form-control" name="makeRoundTripReservationFromLeg" id="makeRoundTripReservationFromLeg" placeholder="0">
+										</div>
+										<div class="form-group">
+											<label for="makeRoundTripReservationToAirline">Destination Airline Id</label>
+											<input type="text" class="form-control" name="makeRoundTripReservationToAirline" id="makeRoundTripReservationToAirline" placeholder="JFK">
+										</div>
+										<div class="form-group">
+											<label for="makeRoundTripReservationToNumber">Destination Flight Number</label>
+											<input type="number" class="form-control" name="makeRoundTripReservationToNumber" id="makeRoundTripReservationToNumber" placeholder="0">
+										</div>
+										<div class="form-group">
+											<label for="makeRoundTripReservationToLeg">Destination Flight Leg Number</label>
+											<input type="number" class="form-control" name="makeRoundTripReservationToLeg" id="makeRoundTripReservationToLeg" placeholder="0">
+										</div>
+										<hr />
+										<div class="form-group">
+											<label for="makeRoundTripReservationClass">Seat Class</label>
+											<input type="text" class="form-control" name="makeRoundTripReservationClass" id="makeRoundTripReservationClass" placeholder="Business">
+										</div>
+										<div class="form-group">
+											<label for="makeRoundTripReservationSeatNumber">Seat Number</label>
+											<input type="text" class="form-control" name="makeRoundTripReservationSeatNumber" id="makeRoundTripReservationSeatNumber" placeholder="AA000">
+										</div>
+										<div class="form-group">
+											<label for="makeRoundTripReservationMeal">Meal Choice</label>
+											<input type="text" class="form-control" name="makeRoundTripReservationMeal" id="makeRoundTripReservationMeal" placeholder="Beef">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** MAKE ONE WAY TRIP RESERVATION**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Make One-Way Reservation</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#makeOneWayTripReservation">Make One-Way Reservation</a>
 								</h4>
 							</div>
-							<div id="collapse2" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="makeOneWayTripReservation" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="makeOneWayTripReservationAccountNumber">Customer Account Number</label>
+											<input type="number" class="form-control" name="makeOneWayTripReservationAccountNumber" id="makeOneWayTripReservationAccountNumber" placeholder="0">
+										</div>
+										<hr />
+										<div class="form-group">
+											<label for="makeOneWayTripReservationAirline">Airline Id</label>
+											<input type="text" class="form-control" name="makeOneWayTripReservationAirline" id="makeOneWayTripReservationAirline" placeholder="JFK">
+										</div>
+										<div class="form-group">
+											<label for="makeOneWayTripReservationNumber">Flight Number</label>
+											<input type="number" class="form-control" name="makeOneWayTripReservationNumber" id="makeOneWayTripReservationNumber" placeholder="0">
+										</div>
+										<div class="form-group">
+											<label for="makeOneWayTripReservationLeg">Leg Number</label>
+											<input type="number" class="form-control" name="makeOneWayTripReservationLeg" id="makeOneWayTripReservationLeg" placeholder="0">
+										</div>
+										<hr />
+										<div class="form-group">
+											<label for="makeOneWayTripReservationClass">Seat Class</label>
+											<input type="text" class="form-control" name="makeOneWayTripReservationClass" id="makeOneWayTripReservationClass" placeholder="Business">
+										</div>
+										<div class="form-group">
+											<label for="makeOneWayTripReservationSeatNumber">Seat Number</label>
+											<input type="text" class="form-control" name="makeOneWayTripReservationSeatNumber" id="makeOneWayTripReservationSeatNumber" placeholder="AA000">
+										</div>
+										<div class="form-group">
+											<label for="makeOneWayTripReservationMeal">Meal Choice</label>
+											<input type="text" class="form-control" name="makeOneWayTripReservationMeal" id="makeOneWayTripReservationMeal" placeholder="Beef">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
 

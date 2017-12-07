@@ -54,14 +54,35 @@
 							</div>
 							<div id="addEmployee" class="panel-collapse collapse">
 								<div class="panel-body">
-									<form action ="/employee" method = "post">
+									<form>
 										<div class="form-group">
-											<label for="addEmployeeID">Employee Person ID</label>
-											<input type="number" class="form-control" name = "addEmployeeID" id="addEmployeeID" placeholder="1">
+											<label for="addEmployeePersonFirstName">First Name</label>
+											<input type="text" class="form-control" name="addEmployeePersonFirstName" id="addEmployeePersonFirstName" placeholder="John">
 										</div>
 										<div class="form-group">
+											<label for="addEmployeePersonLastName">Last Name</label>
+											<input type="text" class="form-control" name="addEmployeePersonLastName" id="addEmployeePersonLastName" placeholder="Smith">
+										</div>
+										<div class="form-group">
+											<label for="addEmployeePersonAddress">Address</label>
+											<input type="text" class="form-control" name="addEmployeePersonAddress" id="addEmployeePersonAddress" placeholder="123 Fake St.">
+										</div>
+										<div class="form-group">
+											<label for="addEmployeePersonCity">City</label>
+											<input type="text" class="form-control" name="addEmployeePersonCity" id="addEmployeePersonCity" placeholder="New York">
+										</div>
+										<div class="form-group">
+											<label for="addEmployeePersonState">State</label>
+											<input type="text" class="form-control" name="addEmployeePersonState" id="addEmployeePersonState" placeholder="NY">
+										</div>
+										<div class="form-group">
+											<label for="addEmployeePersonZipCode">ZipCode</label>
+											<input type="text" class="form-control" name="addEmployeePersonZipCode" id="addEmployeePersonZipCode" placeholder="90210">
+										</div>
+										<hr />
+										<div class="form-group">
 											<label for="addEmployeeSSN">Employee SSN</label>
-											<input type="text" class="form-control" name = "addEmployeeSSN" id="addEmployeeSSN" placeholder="123004567">
+											<input type="text" class="form-control" name="addEmployeeSSN" id="addEmployeeSSN" placeholder="123004567">
 										</div>
 										<div class="form-group">
 											<label>Is Manager?</label>
@@ -76,7 +97,7 @@
 										</div>
 										<div class="form-group">
 											<label for="addEmployeeStartDate">Start Date</label>
-											<input type="date" class="form-control" name = "addEmployeeStartDate" id="addEmployeeStartDate" placeholder="01/01/1900">
+											<input type="date" class="form-control" name="addEmployeeStartDate" id="addEmployeeStartDate" placeholder="01/01/1900">
 										</div>
 										<div class="form-group">
 											<label for="addEmployeeHourlyRate">Hourly Rate</label>
@@ -94,6 +115,7 @@
 							</div>
 						</div>
 <!--*** REMOVE EMPLOYEE **************************************-->
+                        <button class="btn btn-default"  onClick="removeEmployee();return false;">Submit</button>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -102,12 +124,12 @@
 							</div>
 							<div id="removeEmployee" class="panel-collapse collapse">
 								<div class="panel-body">
-									<form>
+									<form id="removeEmployeeForm">
 										<div class="form-group">
 											<label for="removeEmployeeSSN">Employee SSN</label>
-											<input type="text" class="form-control" id="removeEmployeeSSN" placeholder="123004567">
+											<input type="text" class="form-control" name="removeEmployeeSSN" id="removeEmployeeSSN" placeholder="123004567">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button class="btn btn-default"  onClick="removeEmployee();return false;">Submit</button>
 									</form>
 									<div id="removeEmployeeResult">
 										<!--TODO: Database fun-->
@@ -115,7 +137,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** Change EMPLOYEE **************************************-->
+<!--*** CHANGE EMPLOYEE **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -127,10 +149,10 @@
 									<form>
 										<div class="form-group">
 											<label for="changeEmployeeSSN">Employee SSN</label>
-											<input type="text" class="form-control" id="changeEmployeeSSN" placeholder="123004567">
+											<input type="text" class="form-control" name="changeEmployeeSSN" id="changeEmployeeSSN" placeholder="123004567">
 										</div>
 										<div class="form-group">
-											<label for="changeEmployeeIsManager">Is Manager?</label>
+											<label>Is Manager?</label>
 											<label class="radio-inline">
 												<input type="radio" name="changeEmployeeIsManager" id="changeEmployeeIsManagerYes" value="yes">
 												Yes
@@ -142,13 +164,13 @@
 										</div>
 										<div class="form-group">
 											<label for="changeEmployeeStartDate">Start Date</label>
-											<input type="date" class="form-control" id="changeEmployeeStartDate" placeholder="01/01/1900">
+											<input type="date" class="form-control" name="changeEmployeeStartDate" id="changeEmployeeStartDate" placeholder="01/01/1900">
 										</div>
 										<div class="form-group">
 											<label for="changeEmployeeHourlyRate">Hourly Rate</label>
 											<div class="input-group">
 												<div class="input-group-addon">$</div>
-												<input type="number" class="form-control" id="changeEmployeeHourlyRate" placeholder="15.00">
+												<input type="number" class="form-control" name="changeEmployeeHourlyRate" id="changeEmployeeHourlyRate" placeholder="15.00">
 											</div>
 										</div>
 										<button type="submit" class="btn btn-default">Submit</button>
@@ -159,114 +181,202 @@
 								</div>
 							</div>
 						</div>
-
+<!--*** GET SALES REPORT **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Get Sales Report</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getSalesReport">Get Sales Report</a>
 								</h4>
 							</div>
-							<div id="collapse4" class="panel-collapse collapse">
-								<div class="panel-body">TODO: Needs a button and a month input with a table for output</div>
+							<div id="getSalesReport" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="getSalesReportMonth">Month</label>
+											<input type="month" class="form-control" name="getSalesReportMonth" id="getSalesReportMonth" placeholder="mm/yyyy">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET FLIGHT LISTING **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Get comprehensive listing of all flights</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getFlightListing">Get comprehensive listing of all flights</a>
 								</h4>
 							</div>
-							<div id="collapse5" class="panel-collapse collapse">
-								<div class="panel-body">TODO: Just a button and a table will do</div>
+							<div id="getFlightListing" class="panel-collapse collapse">
+								<div class="panel-body">
+								<form>
+									<button type="submit" class="btn btn-default">Submit</button>
+								</form>
+							</div>
 							</div>
 						</div>
-
+<!--*** GET RESERVATIONS BY FLIGHT NUMBER**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Get list of reservations by flight number</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getReservationsByFlight">Get list of reservations by flight number</a>
 								</h4>
 							</div>
-							<div id="collapse6" class="panel-collapse collapse">
-								<div class="panel-body">TODO: flight number input and a table</div>
+							<div id="getReservationsByFlight" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="getReservationsByFlightNumberAirline">Airline Id</label>
+											<input type="text" class="form-control" name="getReservationsByFlightNumberAirline" id="getReservationsByFlightNumberAirline" placeholder="JFK">
+										</div>
+										<div class="form-group">
+											<label for="getReservationsByFlightNumberNumber">Flight Number</label>
+											<input type="number" class="form-control" name="getReservationsByFlightNumberNumber" id="getReservationsByFlightNumberNumber" placeholder="0">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET RESERVATIONS BY CUSTOMER NAME**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Get list of reservations by customer name</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getReservationsByCustomerName">Get list of reservations by customer name</a>
 								</h4>
 							</div>
-							<div id="collapse7" class="panel-collapse collapse">
-								<div class="panel-body">TODO: customer name input and a table</div>
+							<div id="getReservationsByCustomerName" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="getReservationsByCustomerNameFirst">First Name</label>
+											<input type="text" class="form-control" name="getReservationsByCustomerNameFirst" id="getReservationsByCustomerNameFirst" placeholder="John">
+										</div>
+										<div class="form-group">
+											<label for="getReservationsByCustomerNameLast">Last Name</label>
+											<input type="text" class="form-control" name="getReservationsByCustomerNameLast" id="getReservationsByCustomerNameLast" placeholder="Smith">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET REVENUE BY FLIGHT**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse8">Get revenue generated by flight</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getRevenueByFlight">Get revenue generated by flight</a>
 								</h4>
 							</div>
-							<div id="collapse8" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="getRevenueByFlight" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="getRevenueByFlightAirline">Airline Id</label>
+											<input type="text" class="form-control" name="getRevenueByFlightAirline" id="getRevenueByFlightAirline" placeholder="JFK">
+										</div>
+										<div class="form-group">
+											<label for="getRevenueByFlightNumber">Flight Number</label>
+											<input type="number" class="form-control" name="getRevenueByFlightNumber" id="getRevenueByFlightNumber" placeholder="0">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET REVENUE BY DESTINATION CITY**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse9">Get revenue generated by destination city</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getRevenueByDestinationCity">Get revenue generated by destination city</a>
 								</h4>
 							</div>
-							<div id="collapse9" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="getRevenueByDestinationCity" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="getRevenueByDestinationCityCity">City</label>
+											<input type="text" class="form-control" name="getRevenueByDestinationCityCity" id="getRevenueByDestinationCityCity" placeholder="New York">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET REVENUE BY CUSTOMER**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse10">Get revenue generated by a customer</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getRevenueByCustomer">Get revenue generated by a customer</a>
 								</h4>
 							</div>
-							<div id="collapse10" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="getRevenueByCustomer" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="getRevenueByCustomerAccountId">Customer Account Id</label>
+											<input type="number" class="form-control" name="getRevenueByCustomerAccountId" id="getRevenueByCustomerAccountId" placeholder="0">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET CUSTOMER OF MAX REVENUE**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse11">Get which customer representative generated the most revenue</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getCustomerOfMaxRevenue">Get which customer representative generated the most revenue</a>
 								</h4>
 							</div>
-							<div id="collapse11" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="getCustomerOfMaxRevenue" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET MOST ACTIVE FLIGHTS**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse12">Get most active flights</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getMostActiveFlights">Get most active flights</a>
 								</h4>
 							</div>
-							<div id="collapse12" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="getMostActiveFlights" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
+<!--*** GET CUSTOMERS ON A GIVEN FLIGHT**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse13">Get list of customers with seats reserved on a flight</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#getCustomersOnFlight">Get list of customers with seats reserved on a flight</a>
 								</h4>
 							</div>
-							<div id="collapse13" class="panel-collapse collapse">
-								<div class="panel-body">TODO</div>
+							<div id="getCustomersOnFlight" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="getCustomersOnFlightAirline">Airline Id</label>
+											<input type="text" class="form-control" name="getCustomersOnFlightAirline" id="getCustomersOnFlightAirline" placeholder="JFK">
+										</div>
+										<div class="form-group">
+											<label for="getCustomersOnFlightNumber">Flight Number</label>
+											<input type="number" class="form-control" name="getCustomersOnFlightNumber" id="getCustomersOnFlightNumber" placeholder="0">
+										</div>
+										<div class="form-group">
+											<label for="getCustomersOnFlightLeg">Leg Number</label>
+											<input type="number" class="form-control" name="getCustomersOnFlightLeg" id="getCustomersOnFlightLeg" placeholder="0">
+										</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
 
@@ -279,9 +389,11 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script-->
 		<!--script src="/305_Website/js/bootstrap.js"></script-->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="../js/myJavasctipt.js"></script>
+        <script src="js/manager.js"></script>
 	</body>
 </html>
