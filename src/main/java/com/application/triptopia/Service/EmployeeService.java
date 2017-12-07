@@ -98,4 +98,16 @@ public class EmployeeService {
     public void makeRoundTripReservation(Ticket[] ticket) {
         appDao.makeRoundTripReservaion(ticket);
     }
+
+    public void updateCustomer(Customer customer, int i) {
+        appDao.updateCustomer(customer, i);
+    }
+
+    public void deleteCustomer(int i) {
+        appDao.deleteCustomer(i);
+    }
+
+    public void recommendedFlightsForCustomer(int i) {
+        appDao.recommendedFlightsForCustomer(i);
+    }
 }
