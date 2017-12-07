@@ -310,4 +310,29 @@ public class MySqlAppDao{
         jdbcTemplate.update("CALL `reservation_schema`.`makeRoundTripReservation`(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", ticket[0].getAccountNo(), ticket[0].getAirlineId(), ticket[0].getFlightNo(), ticket[0].getLegNo(), ticket[1].getAirlineId(), ticket[1].getFlightNo(), ticket[1].getLegNo(), ticket[0].getSeatClass(), ticket[0].getSeatNo(), ticket[0].getMeal());
 
     }
+
+    public void updateCustomer(Customer customer, int i) {
+        if(customer.getCreditCardNo()!=null){
+            jdbcTemplate.update("CALL `reservation_schema`.`editCustomerCreditCard`(?, ?)", customer.getCreditCardNo(), i);
+        }
+        if(customer.getPhoneNo()!=null){
+            jdbcTemplate.update("CALL `reservation_schema`.`editCustomerPhoneNo`(?, ?)", customer.getPhoneNo() , i);
+        }
+        if(customer.getEmail()!=null){
+            jdbcTemplate.update("CALL `reservation_schema`.`editCustomerEmail`(?, ?)", customer.getEmail() , i);
+        }
+        if(customer.getRating()!=0){
+            jdbcTemplate.update("CALL `reservation_schema`.`editCustomerRating`(?, ?)", customer.getRating() , i);
+        }
+    }
+
+    public void deleteCustomer(int i) {
+        jdbcTemplate.update("CALL `reservation_schema`.`removeCustomer`(?)", i);
+    }
+
+
+    public void recommendedFlightsForCustomer(int i) {
+        jdbcTemplate.update("CALL `reservation_schema`.`getSuggestedLegs`(?)", i);
+    }
+
 }

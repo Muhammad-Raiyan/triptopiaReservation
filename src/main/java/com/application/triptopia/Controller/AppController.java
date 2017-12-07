@@ -103,6 +103,21 @@ public class AppController {
         appService.addCustomer(customer);
     }
 
+    @RequestMapping(value = "/rep/updateCustomer/{accountNo}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateCustomer(@RequestBody Customer customer,  @PathVariable("accountNo") String accountNo) {
+        appService.updateCustomer(customer, Integer.parseInt(accountNo));
+    }
+
+    @RequestMapping(value = "/rep/deleteCustomer/{accountNo}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable("accountNo") String accountNo) {
+        appService.deleteCustomer(Integer.parseInt(accountNo));
+    }
+
+    @RequestMapping(value = "/rep/recommendedFlights/{accountNo}", method = RequestMethod.GET)
+    public void recommendedFlightsForCustomer(@PathVariable("accountNo") String accountNo) {
+        appService.recommendedFlightsForCustomer(Integer.parseInt(accountNo));
+    }
+
     @RequestMapping(value = "/rep/allCustomers", method = RequestMethod.GET)
     public Collection<Customer> getAllCustomers() {
         return appService.getAllCustomers();
@@ -117,4 +132,6 @@ public class AppController {
     public void makeRoundTripReservation(@RequestBody Ticket[] ticket){
         appService.makeRoundTripReservation(ticket);
     }
+
+
 }
