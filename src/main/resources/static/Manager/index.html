@@ -54,7 +54,7 @@
 							</div>
 							<div id="addEmployee" class="panel-collapse collapse">
 								<div class="panel-body">
-									<form>
+									<form id="addEmployeeForm">
 										<div class="form-group">
 											<label for="addEmployeePersonFirstName">First Name</label>
 											<input type="text" class="form-control" name="addEmployeePersonFirstName" id="addEmployeePersonFirstName" placeholder="John">
@@ -106,7 +106,7 @@
 												<input type="number" class="form-control" name="addEmployeeHourlyRate" id="addEmployeeHourlyRate" placeholder="15.00">
 											</div>
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onCLick="addEmployee();">Submit</button>
 									</form>
 									<div id="addEmployeeResult">
 										<!--TODO: Database fun-->
@@ -115,7 +115,6 @@
 							</div>
 						</div>
 <!--*** REMOVE EMPLOYEE **************************************-->
-                        <button class="btn btn-default"  onClick="removeEmployee();return false;">Submit</button>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -129,7 +128,7 @@
 											<label for="removeEmployeeSSN">Employee SSN</label>
 											<input type="text" class="form-control" name="removeEmployeeSSN" id="removeEmployeeSSN" placeholder="123004567">
 										</div>
-										<button class="btn btn-default"  onClick="removeEmployee();return false;">Submit</button>
+										<button type="button" class="btn btn-default"  onClick="removeEmployee();">Submit</button>
 									</form>
 									<div id="removeEmployeeResult">
 										<!--TODO: Database fun-->
