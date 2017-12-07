@@ -1,23 +1,15 @@
 package com.application.triptopia.Dao;
 
 import com.application.triptopia.Entity.Employee;
-import com.application.triptopia.Entity.Person;
-import com.sun.rowset.internal.Row;
+import com.application.triptopia.Entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.SqlParameter;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
-import org.springframework.jdbc.object.StoredProcedure;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Type;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -49,6 +41,20 @@ public class MySqlEmployeeDao implements EmployeeDao{
             employee.setStartDate(resultSet.getString("StartDate"));
             employee.setHourlyRate(resultSet.getDouble("HourlyRate"));
             return employee;
+        }
+    }
+
+    private static class FlightRowMapper implements RowMapper<Flight>{
+        @Override
+        public Flight mapRow(ResultSet resultSet, int i) throws SQLException {
+            Flight flight = new Flight();
+            flight.setAirlineId(resultSet.getString("airlineId"));
+            flight.setFlightNo(resultSet.getInt("flightNo"));
+            flight.setNoOfSeats(resultSet.getInt("noOfSeats"));
+            flight.setDaysOperating(resultSet.getString("daysOperating"));
+            flight.setMaxLengthOfStay(resultSet.getInt("maxLengthOfStay"));
+            flight.setMinLengthOfStay(resultSet.getInt("minLengthOfStay"));
+            return flight;
         }
     }
 
@@ -119,8 +125,9 @@ public class MySqlEmployeeDao implements EmployeeDao{
     }
 
     @Override
-    public void getAllFlight() {
+    public Collection<Flight> getAllFlight() {
         String sql = " SELECT * FROM Flight";
-        jdbcTemplate.execute(sql);
+        List<Flight> query = jdbcTemplate.query(sql, new FlightRowMapper());
+        return query;
     }
 }

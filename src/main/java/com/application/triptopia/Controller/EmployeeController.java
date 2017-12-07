@@ -1,6 +1,7 @@
 package com.application.triptopia.Controller;
 
 import com.application.triptopia.Entity.Employee;
+import com.application.triptopia.Entity.Flight;
 import com.application.triptopia.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -40,5 +41,10 @@ public class EmployeeController {
     public void insertEmployee(@RequestBody Employee employee){
         System.out.println("IN insert employee");
         employeeService.insertEmployee(employee);
+    }
+
+    @RequestMapping(value="/flights", method = RequestMethod.GET)
+    public Collection<Flight> getListOfFlight(){
+        return employeeService.getAllFlights();
     }
 }

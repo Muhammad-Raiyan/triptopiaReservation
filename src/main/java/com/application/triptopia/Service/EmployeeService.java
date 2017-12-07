@@ -2,6 +2,7 @@ package com.application.triptopia.Service;
 
 import com.application.triptopia.Dao.EmployeeDao;
 import com.application.triptopia.Entity.Employee;
+import com.application.triptopia.Entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class EmployeeService {
         this.employeeDao.insertEmployeeToDB(employee);
     }
 
-    public void getAllFlights(){
-        this.employeeDao.getAllFlight();
+    public Collection<Flight> getAllFlights(){
+        return this.employeeDao.getAllFlight();
     }
 }

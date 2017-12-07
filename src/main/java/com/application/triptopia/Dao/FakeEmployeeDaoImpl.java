@@ -1,9 +1,9 @@
 package com.application.triptopia.Dao;
 
 import com.application.triptopia.Entity.Employee;
+import com.application.triptopia.Entity.Flight;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -60,7 +60,8 @@ public class FakeEmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public void getAllFlight() {
+    public Collection<Flight> getAllFlight() {
 
+        return null;
     }
 }

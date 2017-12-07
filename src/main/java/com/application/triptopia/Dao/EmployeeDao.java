@@ -1,6 +1,7 @@
 package com.application.triptopia.Dao;
 
 import com.application.triptopia.Entity.Employee;
+import com.application.triptopia.Entity.Flight;
 
 import java.util.Collection;
 
@@ -17,5 +18,5 @@ public interface EmployeeDao {
 
     void insertEmployeeToDB(Employee employee);
 
-    void getAllFlight();
+    Collection<Flight> getAllFlight();
 }
