@@ -133,5 +133,9 @@ public class AppController {
         appService.makeRoundTripReservation(ticket);
     }
 
+    @RequestMapping(value = "/customer/search/{depAirportID}/{arrAirportId}/{depTime}/{arrTime}", method = RequestMethod.GET)
+    public List<Map<String, Object>> searchRoute(@PathVariable("depAirportID") String depAirportId, @PathVariable("arrAirportId") String arrAirportId,  @PathVariable("depTime") String depTime, @PathVariable("arrTime") String arrTime){
+        return appService.searchRoute(depAirportId, arrAirportId, depTime, arrTime);
+    }
 
 }
