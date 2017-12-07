@@ -1,5 +1,10 @@
 package com.application.triptopia.Entity;
 
+import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Employee extends Person {
     private int personId;
     private int ssn;

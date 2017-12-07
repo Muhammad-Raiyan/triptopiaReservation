@@ -67,4 +67,8 @@ public class Reservation {
     public void setAccountNo(int accountNo) {
         this.accountNo = accountNo;
     }
+
+    public Object[] getReservationAsArray(){
+        return new Object[]{resrDate, bookingFee, totalFare, repSSN, accountNo};
+    }
 }
