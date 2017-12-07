@@ -1,19 +1,19 @@
 function makeRoundTripReservation(){
 	var toSend1 = {};
-	toSend1["accountNumber"]    = $("#makeRoundTripReservationAccountNumber").val();
-	toSend1["airline"]      = $("#makeRoundTripReservationFromAirline").val();
-	toSend1["flightNumber"] = $("#makeRoundTripReservationFromNumber").val();
-	toSend1["legNumber"]    = $("#makeRoundTripReservationFromLeg").val();
+	toSend1["accountNo"]    = $("#makeRoundTripReservationAccountNumber").val();
+	toSend1["airlineId"]      = $("#makeRoundTripReservationFromAirline").val();
+	toSend1["flightNo"] = $("#makeRoundTripReservationFromNumber").val();
+	toSend1["legNo"]    = $("#makeRoundTripReservationFromLeg").val();
 	toSend1["seatClass"]            = $("#makeRoundTripReservationFromClass").val();
-	toSend1["seatNumber"]       = $("#makeRoundTripReservationFromSeatNumber").val();
+	toSend1["seatNo"]       = $("#makeRoundTripReservationFromSeatNumber").val();
 	toSend1["meal"]             = $("#makeRoundTripReservationMeal").val();
 	var toSend2 = {};
-	toSend2["accountNumber"]    = $("#makeRoundTripReservationAccountNumber").val();
-	toSend2["toAirline"]        = $("#makeRoundTripReservationToAirline").val();
-	toSend2["toFlightNumber"]   = $("#makeRoundTripReservationToNumber").val();
-	toSend2["toLegNumber"]      = $("#makeRoundTripReservationToLeg").val();
+	toSend2["accountNo"]    = $("#makeRoundTripReservationAccountNumber").val();
+	toSend2["airlineId"]        = $("#makeRoundTripReservationToAirline").val();
+	toSend2["flightNo"]   = $("#makeRoundTripReservationToNumber").val();
+	toSend2["legNo"]      = $("#makeRoundTripReservationToLeg").val();
 	toSend2["seatClass"]            = $("#makeRoundTripReservationToClass").val();
-	toSend2["seatNumber"]       = $("#makeRoundTripReservationToSeatNumber").val();
+	toSend2["seatNo"]       = $("#makeRoundTripReservationToSeatNumber").val();
 	toSend2["meal"]             = $("#makeRoundTripReservationMeal").val();
 	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend1));
 	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend2));
@@ -22,12 +22,12 @@ function makeRoundTripReservation(){
 
 function makeOneWayTripReservation(){
 	var toSend = {};
-	toSend["accountNumber"]    = $("#makeOneWayTripReservationAccountNumber").val();
-	toSend["airline"]      = $("#makeOneWayTripReservationAirline").val();
-	toSend["flightNumber"] = $("#makeOneWayTripReservationNumber").val();
-	toSend["legNumber"]    = $("#makeOneWayTripReservationLeg").val();
-	toSend["class"]            = $("#makeOneWayTripReservationClass").val();
-	toSend["seatNumber"]       = $("#makeOneWayTripReservationSeatNumber").val();
+	toSend["accountNo"]    = $("#makeOneWayTripReservationAccountNumber").val();
+	toSend["airlineId"]      = $("#makeOneWayTripReservationAirline").val();
+	toSend["flightNo"] = $("#makeOneWayTripReservationNumber").val();
+	toSend["legNo"]    = $("#makeOneWayTripReservationLeg").val();
+	toSend["seatClass"]            = $("#makeOneWayTripReservationClass").val();
+	toSend["seatNo"]       = $("#makeOneWayTripReservationSeatNumber").val();
 	toSend["meal"]             = $("#makeOneWayTripReservationMeal").val();
 	ajaxWrapperPOST('/home/rep/oneWay', JSON.stringify(toSend));
 }
