@@ -91,7 +91,7 @@ function viewEmployee(){
 }
 
 function getReservationsByFlightNumber(){
-	var url = 'reservationsByFlightNumber/' + $("#getReservationsByFlightNumberAirline").val() + '/' + $("#getReservationsByFlightNumberNumber").val();
+	var url = '/employee/reservationsByFlightNumber/' + $("#getReservationsByFlightNumberAirline").val() + '/' + $("#getReservationsByFlightNumberNumber").val();
 	ajaxWrapperGET(url, function(response){
 		console.log("Success: " + JSON.stringify(response, null, 2));
 		TableFromJSON(response,"getReservationsByFlightResult");
