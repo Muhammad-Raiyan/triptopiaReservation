@@ -58,7 +58,7 @@ function ajaxWrapperPUT(inUrl, inData){
 }
 
 function removeEmployee(){
-	ajaxWrapperDELETE('/employee/delete'+$("#removeEmployeeSSN").val());
+	ajaxWrapperDELETE('/employee/delete/'+$("#removeEmployeeSSN").val());
 }
 
 function addEmployee(){
@@ -95,7 +95,7 @@ function getFlightListing(){
 }
 
 function viewEmployee(){
-	ajaxWrapperGET('/employee/get'+$("#viewEmployeeSSN").val(), function(response) {
+	ajaxWrapperGET('/employee/get/'+$("#viewEmployeeSSN").val(), function(response) {
 		console.log(JSON.stringify(response));
 		TableFromJSON(response,"viewEmployeeResult");
 	});
