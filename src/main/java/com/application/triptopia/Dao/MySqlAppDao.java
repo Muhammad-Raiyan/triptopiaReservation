@@ -23,6 +23,8 @@ public class MySqlAppDao{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
+
     private static class EmployeeRowMapper implements RowMapper<Employee>{
         @Override
         public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -302,5 +304,10 @@ public class MySqlAppDao{
     public void makeOneWayReservation(Ticket ticket) {
 
         jdbcTemplate.update("CALL `reservation_schema`.`makeOneWayReservation`(?, ?, ?, ?, ?, ?, ?)", ticket.getAccountNo(), ticket.getAirlineId(), ticket.getFlightNo(), ticket.getSeatClass(), ticket.getSeatNo(), ticket.getMeal(), ticket.getLegNo());
+    }
+
+    public void makeRoundTripReservaion(Ticket[] ticket) {
+        jdbcTemplate.update("CALL `reservation_schema`.`makeRoundTripReservation`(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", ticket[0].getAccountNo(), ticket[0].getAirlineId(), ticket[0].getFlightNo(), ticket[0].getLegNo(), ticket[1].getAirlineId(), ticket[1].getFlightNo(), ticket[1].getLegNo(), ticket[0].getSeatClass(), ticket[0].getSeatNo(), ticket[0].getMeal());
+
     }
 }
