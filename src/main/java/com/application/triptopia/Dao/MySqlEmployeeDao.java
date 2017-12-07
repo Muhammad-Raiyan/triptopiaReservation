@@ -80,8 +80,11 @@ public class MySqlEmployeeDao implements EmployeeDao{
 
     @Override
     public void updateEmployee(Employee employee) {
-
-
+        final String sql = "UPDATE Employee\n" +
+                "    SET Employee.IsManager=?, Employee.StartDate=?, Employee.HourlyRate=?\n" +
+                "    WHERE Employee.SSN=?";
+        Object[] param = new Object[]{employee.isManager(), employee.getStartDate(), employee.getHourlyRate(), employee.getSsn()};
+        jdbcTemplate.update(sql, param);
     }
 
     @Override
