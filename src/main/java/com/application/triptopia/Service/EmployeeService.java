@@ -94,4 +94,8 @@ public class EmployeeService {
     public void makeOneWayReservation(Ticket ticket) {
         appDao.makeOneWayReservation(ticket);
     }
+
+    public void makeRoundTripReservation(Ticket[] ticket) {
+        appDao.makeRoundTripReservaion(ticket);
+    }
 }

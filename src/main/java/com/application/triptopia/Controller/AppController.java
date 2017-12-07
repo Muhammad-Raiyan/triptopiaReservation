@@ -112,4 +112,9 @@ public class AppController {
     public void makeOneWayReservation(@RequestBody Ticket ticket){
         appService.makeOneWayReservation(ticket);
     }
+
+    @RequestMapping(value = "/rep/roundTrip", method = RequestMethod.POST)
+    public void makeRoundTripReservation(@RequestBody Ticket[] ticket){
+        appService.makeRoundTripReservation(ticket);
+    }
 }
