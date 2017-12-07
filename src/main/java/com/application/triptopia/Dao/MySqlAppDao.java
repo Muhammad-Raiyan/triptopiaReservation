@@ -337,7 +337,7 @@ public class MySqlAppDao{
     }
 
     public List<Map<String,Object>> searchRoute(String depAirportId, String arrAirportId, String depTime, String arrTime) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         List<Map<String, Object>> maps = null;
         try {
             Date depDate = sdf.parse(depTime);
