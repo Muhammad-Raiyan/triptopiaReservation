@@ -3,6 +3,9 @@ package com.application.triptopia.Dao;
 import com.application.triptopia.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -19,9 +22,6 @@ public class MySqlAppDao{
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-
-
 
     private static class EmployeeRowMapper implements RowMapper<Employee>{
         @Override
@@ -297,5 +297,10 @@ public class MySqlAppDao{
         final String sql = "SELECT * FROM reservation_schema.customer c, reservation_schema.person p WHERE p.Id = c.id";
         List<Customer> queryViewCustomers = jdbcTemplate.query(sql, new CustomerRowMapper());
         return queryViewCustomers;
+    }
+
+    public void makeOneWayReservation(Ticket ticket) {
+
+        jdbcTemplate.update("CALL `reservation_schema`.`makeOneWayReservation`(?, ?, ?, ?, ?, ?, ?)", ticket.getAccountNo(), ticket.getAirlineId(), ticket.getFlightNo(), ticket.getSeatClass(), ticket.getSeatNo(), ticket.getMeal(), ticket.getLegNo());
     }
 }
