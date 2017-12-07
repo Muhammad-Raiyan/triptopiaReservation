@@ -12,8 +12,8 @@ function makeRoundTripReservation(){
 	toSend2["airlineId"]        = $("#makeRoundTripReservationToAirline").val();
 	toSend2["flightNo"]   = $("#makeRoundTripReservationToNumber").val();
 	toSend2["legNo"]      = $("#makeRoundTripReservationToLeg").val();
-	toSend2["seatClass"]            = $("#makeRoundTripReservationToClass").val();
-	toSend2["seatNo"]       = $("#makeRoundTripReservationToSeatNumber").val();
+	toSend2["seatClass"]            = $("#makeRoundTripReservationFromClass").val();
+	toSend2["seatNo"]       = $("#makeRoundTripReservationFromSeatNumber").val();
 	toSend2["meal"]             = $("#makeRoundTripReservationMeal").val();
 	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify([toSend1, toSend2]));
 }
@@ -43,4 +43,13 @@ function addCustomer(){
 	toSend["date"] = $("#addCustomerDate").val();
 	toSend["email"] = $("#addCustomerEmail").val();
 	ajaxWrapperPOST('/home/rep/addCustomer', JSON.stringify(toSend));
+}
+function changeCustomer(){
+	var toSend = {};
+	toSend["accountNo"] = $("#changeCustomerAccountNo").val();
+	toSend["phoneNo"] = $("#addCustomerphoneNo").val();
+	toSend["creditCard"] = $("#addCustomerCreditCard").val();
+	toSend["date"] = $("#addCustomerDate").val();
+	toSend["email"] = $("#addCustomerEmail").val();
+	ajaxWrapperPUT('/home/rep/updateCustomer', JSON.stringify(toSend));
 }

@@ -99,21 +99,21 @@
 											</div>
 											<hr />
 											<div class="form-group">
-												<label for="makeRoundTripReservationFromClass">Departure Seat Class</label>
+												<label for="makeRoundTripReservationFromClass">Seat Class</label>
 												<input type="text" class="form-control" name="makeRoundTripReservationFromClass" id="makeRoundTripReservationFromClass" placeholder="Business">
 											</div>
 											<div class="form-group">
-												<label for="makeRoundTripReservationFromSeatNumber">Depature Seat Number</label>
+												<label for="makeRoundTripReservationFromSeatNumber">Seat Number</label>
 												<input type="text" class="form-control" name="makeRoundTripReservationFromSeatNumber" id="makeRoundTripReservationFromSeatNumber" placeholder="AA000">
 											</div>
-											<div class="form-group">
+											<!--div class="form-group">
 												<label for="makeRoundTripReservationToClass">Return Seat Class</label>
 												<input type="text" class="form-control" name="makeRoundTripReservationToClass" id="makeRoundTripReservationToClass" placeholder="Business">
 											</div>
 											<div class="form-group">
 												<label for="makeRoundTripReservationToSeatNumber">Return Seat Number</label>
 												<input type="text" class="form-control" name="makeRoundTripReservationToSeatNumber" id="makeRoundTripReservationToSeatNumber" placeholder="AA000">
-											</div>
+											</div-->
 											<div class="form-group">
 												<label for="makeRoundTripReservationMeal">Meal Choice</label>
 												<input type="text" class="form-control" name="makeRoundTripReservationMeal" id="makeRoundTripReservationMeal" placeholder="Beef">
@@ -224,6 +224,49 @@
 										<button type="button" class="btn btn-default" onCLick="addCustomer();">Submit</button>
 									</form>
 									<div id="addCustomerResult">
+										<!--TODO: Database fun-->
+									</div>
+								</div>
+							</div>
+						</div>
+<!--*** CHANGE CUSTOMER ******************************************-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#changeCustomer">Change Customer</a>
+								</h4>
+							</div>
+							<div id="changeCustomer" class="panel-collapse collapse">
+								<div class="panel-body">
+									<form id="changeCustomerForm">
+										<div class="form-group">
+											<label for="changeCustomerPersonFirstName">First Name</label>
+											<input type="text" class="form-control" name="changeCustomerPersonFirstName" id="changeCustomerPersonFirstName" placeholder="John">
+										</div>
+										<div class="form-group">
+											<label for="changeCustomerAccountNo">Customer Account Number</label>
+											<input type="text" class="form-control" name="changeCustomerAccountNo" id="changeCustomerAccountNo" placeholder="123004567">
+										</div>
+										<hr />
+										<div class="form-group">
+											<label for="changeCustomerPhoneNo">Phone Number</label>
+											<input type="text" class="form-control" name="changeCustomerPhoneNo" id="changeCustomerPhoneNo" placeholder="631-555-0137">
+										</div>
+										<div class="form-group">
+											<label for="changeCustomerCreditCard">Credit Card</label>
+											<input type="text" class="form-control" name="changeCustomerCreditCard" id="changeCustomerCreditCard" placeholder="4111 1111 1111 1111">
+										</div>
+										<div class="form-group">
+											<label for="changeCustomerDate">Date</label>
+											<input type="date" class="form-control" name="changeCustomerDate" id="changeCustomerDate" placeholder="mm/dd/yyyy">
+										</div>
+										<div class="form-group">
+											<label for="changeCustomerEmail">Email</label>
+											<input type="text" class="form-control" name="changeCustomerEmail" id="changeCustomerEmail" placeholder="Joe.Smith@example.com">
+										</div>
+										<button type="button" class="btn btn-default" onCLick="changeCustomer();">Submit</button>
+									</form>
+									<div id="changeCustomerResult">
 										<!--TODO: Database fun-->
 									</div>
 								</div>
