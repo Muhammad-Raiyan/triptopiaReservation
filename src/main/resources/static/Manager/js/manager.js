@@ -72,9 +72,15 @@ function getFlightListing(){
 	jQuery.ajax({
 		url: '/employee/flights',
 		type: 'GET',
+		headers:{
+			"Content-Type":"application/json"
+		},
 		success: function(response) {
 			console.log(JSON.stringify(response));
 			TableFromJSON(response,"getFlightListingResult");
+		},
+		error: function(response) {
+			console.log(JSON.stringify(response));
 		}
 	});
 }
