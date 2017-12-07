@@ -22,7 +22,7 @@ public class EmployeeService {
         return employeeDao.getAllEmployee();
     }
 
-    public Employee getEmployee(int id){
+    public List<Map<String, Object>> getEmployee(int id){
         return this.employeeDao.getEmployee(id);
     }
 

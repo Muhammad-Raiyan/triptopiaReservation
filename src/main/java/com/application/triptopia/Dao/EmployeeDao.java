@@ -11,7 +11,7 @@ public interface EmployeeDao {
 
     void addEmployee(int key, Employee newEmployee);
 
-    Employee getEmployee(int id);
+    List<Map<String, Object>> getEmployee(int id);
 
     void deleteEmployee(int id);
 

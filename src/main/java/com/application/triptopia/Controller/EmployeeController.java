@@ -22,7 +22,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Employee getEmployee(@PathVariable("id") int id) {
+    public List<Map<String, Object>> getEmployee(@PathVariable("id") int id) {
         return this.employeeService.getEmployee(id);
     }
 

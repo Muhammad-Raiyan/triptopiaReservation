@@ -99,10 +99,9 @@ public class MySqlEmployeeDao implements EmployeeDao{
     }
 
     @Override
-    public Employee getEmployee(int id) {
+    public List<Map<String, Object>> getEmployee(int id) {
         final String sql = "SELECT * FROM reservation_schema.employee em, reservation_schema.person p WHERE p.Id = em.id AND em.SSN = ?";
-        Employee employee = jdbcTemplate.queryForObject(sql, new EmployeeRowMapper(), id);
-        return employee;
+        return jdbcTemplate.queryForList(sql, id);
     }
 
     @Override
