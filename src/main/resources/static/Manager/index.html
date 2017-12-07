@@ -51,9 +51,9 @@
 
 		<div class="container" id="largeOuterContainer">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+				<div class="col-sm-10 col-sm-offset-1">
 					<div class="panel-group" id="accordion">
-<!--*** GET ALL EMPLOYEES **************************************-->
+<!--***** GET ALL EMPLOYEES **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -70,7 +70,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** ADD EMPLOYEE ******************************************-->
+<!--***** ADD EMPLOYEE ******************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -139,7 +139,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** REMOVE EMPLOYEE **************************************-->
+<!--***** REMOVE EMPLOYEE **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -161,7 +161,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** VIEW EMPLOYEE **************************************-->
+<!--***** VIEW EMPLOYEE **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -183,7 +183,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** CHANGE EMPLOYEE **************************************-->
+<!--***** CHANGE EMPLOYEE **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -246,7 +246,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** GET FLIGHT LISTING **************************************-->
+<!--***** GET FLIGHT LISTING **************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -263,7 +263,7 @@
 								</div>
 							</div>
 						</div>
-<!--*** GET RESERVATIONS BY FLIGHT NUMBER**************************************-->
+<!--***** GET RESERVATIONS BY FLIGHT NUMBER**************************************-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -272,6 +272,8 @@
 							</div>
 							<div id="getReservationsByFlight" class="panel-collapse collapse">
 								<div class="panel-body">
+									<div id="getReservationsByFlightResult">
+									</div>
 									<form>
 										<div class="form-group">
 											<label for="getReservationsByFlightNumberAirline">Airline Id</label>
@@ -281,7 +283,7 @@
 											<label for="getReservationsByFlightNumberNumber">Flight Number</label>
 											<input type="number" class="form-control" name="getReservationsByFlightNumberNumber" id="getReservationsByFlightNumberNumber" placeholder="0">
 										</div>
-										<button type="button" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default" onClick="getReservationsByFlightNumber()">Submit</button>
 									</form>
 								</div>
 							</div>
