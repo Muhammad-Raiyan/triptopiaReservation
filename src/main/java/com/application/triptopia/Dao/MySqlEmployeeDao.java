@@ -6,6 +6,7 @@ import com.sun.rowset.internal.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -17,13 +18,12 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Type;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 @Repository("MySQLData")
 public class MySqlEmployeeDao implements EmployeeDao{
@@ -89,6 +89,23 @@ public class MySqlEmployeeDao implements EmployeeDao{
 
     @Override
     public void insertEmployeeToDB(Employee employee) {
+        String sqlAddPerson = "INSERT INTO Person(FirstName,LastName,Address,City,State,ZipCode)\n" +
+                "    values(?,?,?,?,?,?);";
+
+        KeyHolder key = new GeneratedKeyHolder();
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps = connection.prepareStatement(sqlAddPerson, new String[]{"firstName", "lastName", "address", "city", "state", "zipCode" });
+                ps.setString(1, employee.getFirstName());
+                ps.setString(2, employee.getLastName());
+                ps.setString(3, employee.getAddress());
+                ps.setString(4, employee.getCity());
+                ps.setString(5, employee.getState());
+                ps.setInt(6, employee.getZipCode());
+                return ps;
+            }
+        }, key);
 
         String sql = "INSERT INTO reservation_schema.Employee(Id,SSN,IsManager,StartDate,HourlyRate) VALUES (?, ?, ?, ?, ?)";
         DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
@@ -98,7 +115,7 @@ public class MySqlEmployeeDao implements EmployeeDao{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        jdbcTemplate.update(sql, employee.getPersonId(), employee.getSsn(), employee.isManager(), date, employee.getHourlyRate());
+        jdbcTemplate.update(sql, key.getKey(), employee.getSsn(), employee.isManager(), date, employee.getHourlyRate());
     }
 
     @Override
