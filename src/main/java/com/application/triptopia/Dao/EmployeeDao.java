@@ -1,9 +1,6 @@
 package com.application.triptopia.Dao;
 
-import com.application.triptopia.Entity.Employee;
-import com.application.triptopia.Entity.Flight;
-import com.application.triptopia.Entity.Reservation;
-import com.application.triptopia.Entity.SalesReport;
+import com.application.triptopia.Entity.*;
 
 import java.util.Collection;
 
@@ -27,4 +24,10 @@ public interface EmployeeDao {
     Collection<Reservation> getReservationsByCustomerName(String firstName, String lastName);
 
     Collection<SalesReport> getSalesReport(String date);
+
+    Collection<Revenue> getRevenueByFlightNumber(String airlineId, int flightNo);
+
+    Collection<Revenue> getRevenueByCity(String airlineId);
+
+    Collection<Revenue> getRevenueByCustomer(int accountId);
 }

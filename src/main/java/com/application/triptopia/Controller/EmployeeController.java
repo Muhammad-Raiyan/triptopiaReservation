@@ -1,9 +1,6 @@
 package com.application.triptopia.Controller;
 
-import com.application.triptopia.Entity.Employee;
-import com.application.triptopia.Entity.Flight;
-import com.application.triptopia.Entity.Reservation;
-import com.application.triptopia.Entity.SalesReport;
+import com.application.triptopia.Entity.*;
 import com.application.triptopia.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -63,4 +60,18 @@ public class EmployeeController {
         return employeeService.getSalesReport(date);
     }
 
+    @RequestMapping(value="/revenueByFlight/{airlineId}/{flightNo}", method = RequestMethod.GET)
+    public Collection<Revenue> getRevenueByFlightNumber(@PathVariable("airlineId") String airlineId, @PathVariable("flightNo") int flightNo){
+        return employeeService.getRevenueByFlightNumber(airlineId, flightNo);
+    }
+
+    @RequestMapping(value="/revenueByDestinationCity/{city}", method = RequestMethod.GET)
+    public Collection<Revenue> getRevenueByDestinationCity(@PathVariable("city") String airlineId){
+        return employeeService.getRevenueByCity(airlineId);
+    }
+
+    @RequestMapping(value="/revenueByCustomer/{accountId}", method = RequestMethod.GET)
+    public Collection<Revenue> getRevenueByCustomer(@PathVariable("accountId") int accountId){
+        return employeeService.getRevenueByCustomer(accountId);
+    }
 }

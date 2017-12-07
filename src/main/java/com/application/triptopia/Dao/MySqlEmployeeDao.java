@@ -1,11 +1,7 @@
 package com.application.triptopia.Dao;
 
-import com.application.triptopia.Entity.Employee;
-import com.application.triptopia.Entity.Flight;
-import com.application.triptopia.Entity.Reservation;
-import com.application.triptopia.Entity.SalesReport;
+import com.application.triptopia.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -79,6 +75,13 @@ public class MySqlEmployeeDao implements EmployeeDao{
                     resultSet.getDouble("totalFare"), resultSet.getDouble("bookingFee"));
 
             return sr;
+        }
+    }
+
+    private static class RevenueRowMapper implements RowMapper<Revenue>{
+        @Override
+        public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+            return new Revenue(resultSet.getInt("revenue"));
         }
     }
 
@@ -182,5 +185,39 @@ public class MySqlEmployeeDao implements EmployeeDao{
                 "    WHERE MONTH(Reservation.ResrDate) = MONTH(?) AND  YEAR(Reservation.ResrDate) = YEAR(?)";
         return jdbcTemplate.query(sql, new SalesReportRowMapper(), date, date);
     }
+
+    @Override
+    public Collection<Revenue> getRevenueByFlightNumber(String airlineId, int flightNo) {
+        String sql = "SELECT SUM(Reservation.BookingFee)+SUM(Reservation.TotalFare) as revenue\n" +
+                "\tFROM Reservation, Includes\n" +
+                "\tWHERE Reservation.ResrNo = Includes.ResrNo AND\n" +
+                "   \t Includes.FlightNo = ? AND\n" +
+                "   \t Includes.AirlineId = ?\n";
+        //Integer result = jdbcTemplate.queryForObject(sql, new Object[]{flightNo, airlineId}, Integer.class);
+        return jdbcTemplate.query(sql, new RevenueRowMapper(), flightNo, airlineId);
+        //return new ArrayList<Integer>(Arrays.asList(result));
+    }
+
+    @Override
+    public Collection<Revenue> getRevenueByCity(String city) {
+        String sql = "SELECT SUM(Reservation.BookingFee) +SUM(Reservation.TotalFare) as revenue\n" +
+                "\tFROM Reservation, Includes, Leg, Airport\n" +
+                "\tWHERE Reservation.ResrNo = Includes.ResrNo AND\n" +
+                "   \t Includes.AirlineId = Leg.AirlineId AND\n" +
+                "    \tIncludes.FlightNo = Leg.FlightNo AND\n" +
+                "    \tIncludes.LegNo = Leg.LegNo AND\n" +
+                "    \tLeg.DepAirportID = Airport.Id AND\n" +
+                "    \tAirport.City = ?\n";
+        return jdbcTemplate.query(sql, new RevenueRowMapper(), city);
+    }
+
+    @Override
+    public Collection<Revenue> getRevenueByCustomer(int accountId) {
+        String sql = "SELECT SUM(Reservation.BookingFee) +SUM(Reservation.TotalFare) as revenue\n" +
+                "\tFROM Reservation\n" +
+                "\tWHERE Reservation.AccountNo = ?\n";
+        return jdbcTemplate.query(sql, new RevenueRowMapper(), accountId);
+    }
+
 
 }
