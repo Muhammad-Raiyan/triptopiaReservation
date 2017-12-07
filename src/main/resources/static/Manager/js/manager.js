@@ -62,10 +62,10 @@ function addEmployee(){
 
 function changeEmployee(){
 	var toSend = {};
-	toSend["ssn"] = $("#addEmployeeSSN").val();
-	toSend["isManager"] = $("input[name='addEmployeeIsManager']:checked").val()=="yes";
-	toSend["startDate"] = $("#addEmployeeStartDate").val();
-	toSend["hourlyRate"] = $("#addEmployeeHourlyRate").val();
+	toSend["ssn"] = $("#changeEmployeeSSN").val();
+	toSend["isManager"] = $("input[name='changeEmployeeIsManager']:checked").val()=="yes";
+	toSend["startDate"] = $("#changeEmployeeStartDate").val();
+	toSend["hourlyRate"] = $("#changeEmployeeHourlyRate").val();
 	ajaxWrapperPUT('/employee/update', JSON.stringify(toSend));
 }
 
