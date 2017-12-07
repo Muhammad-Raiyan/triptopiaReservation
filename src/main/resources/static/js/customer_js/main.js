@@ -2,6 +2,8 @@ jQuery(document).ready(function($) {
 
 	'use strict';
 
+	$("#makeTwoWayReservation").hide();
+	$("#makeOneWayReservation").hide();
       $('#form-submit .date').datepicker({
       });
 
@@ -136,6 +138,8 @@ jQuery(document).ready(function($) {
 });
 
 function orderTicketsNowClick(){
+	$("#makeTwoWayReservation").hide();
+	$("#makeOneWayReservation").hide();
 	var url = '/home/customer/orderTickets/'
 	toSend = {};
 	url += (toSend["fromAirport"]  = $("#from").val()) + '/';
@@ -144,4 +148,42 @@ function orderTicketsNowClick(){
 	url += (toSend["returnDate"]   = $("#return").val()) + '/';
 	url += (toSend["tripType"]     = $("input[name='trip']:checked").val());
 	ajaxWrapperGET(url, "bookFlightResults");
+	if(toSend["tripType"]=="round"){
+		$("#makeTwoWayReservation").show();
+	}else{
+		$("#makeOneWayReservation").show();
+	}
+}
+
+function makeRoundTripReservationCustomer(){
+	var toSend1 = {};
+	toSend1["accountNo"]    = $("#makeRoundTripReservationAccountNumber").val();
+	toSend1["airlineId"]      = $("#makeRoundTripReservationFromAirline").val();
+	toSend1["flightNo"] = $("#makeRoundTripReservationFromNumber").val();
+	toSend1["legNo"]    = $("#makeRoundTripReservationFromLeg").val();
+	toSend1["seatClass"]            = $("#makeRoundTripReservationFromClass").val();
+	toSend1["seatNo"]       = $("#makeRoundTripReservationFromSeatNumber").val();
+	toSend1["meal"]             = $("#makeRoundTripReservationMeal").val();
+	var toSend2 = {};
+	toSend2["accountNo"]    = $("#makeRoundTripReservationAccountNumber").val();
+	toSend2["airlineId"]        = $("#makeRoundTripReservationToAirline").val();
+	toSend2["flightNo"]   = $("#makeRoundTripReservationToNumber").val();
+	toSend2["legNo"]      = $("#makeRoundTripReservationToLeg").val();
+	toSend2["seatClass"]            = $("#makeRoundTripReservationToClass").val();
+	toSend2["seatNo"]       = $("#makeRoundTripReservationToSeatNumber").val();
+	toSend2["meal"]             = $("#makeRoundTripReservationMeal").val();
+	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend1));
+	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend2));
+}
+
+function makeOneWayTripReservationCustomer(){
+	var toSend = {};
+	toSend["accountNo"]    = $("#makeOneWayTripReservationAccountNumber").val();
+	toSend["airlineId"]      = $("#makeOneWayTripReservationAirline").val();
+	toSend["flightNo"] = $("#makeOneWayTripReservationNumber").val();
+	toSend["legNo"]    = $("#makeOneWayTripReservationLeg").val();
+	toSend["seatClass"]            = $("#makeOneWayTripReservationClass").val();
+	toSend["seatNo"]       = $("#makeOneWayTripReservationSeatNumber").val();
+	toSend["meal"]             = $("#makeOneWayTripReservationMeal").val();
+	ajaxWrapperPOST('/home/rep/oneWay', JSON.stringify(toSend));
 }

@@ -17,7 +17,6 @@ function makeRoundTripReservation(){
 	toSend2["meal"]             = $("#makeRoundTripReservationMeal").val();
 	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend1));
 	ajaxWrapperPOST('/home/rep/roundTrip', JSON.stringify(toSend2));
-	console.log("hi");
 }
 
 function makeOneWayTripReservation(){
