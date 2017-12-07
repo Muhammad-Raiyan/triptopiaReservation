@@ -172,7 +172,7 @@
 												<input type="number" class="form-control" name="changeEmployeeHourlyRate" id="changeEmployeeHourlyRate" placeholder="15.00">
 											</div>
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 								<div id="changeEmployeeResult">
@@ -194,7 +194,7 @@
 											<label for="getSalesReportMonth">Month</label>
 											<input type="month" class="form-control" name="getSalesReportMonth" id="getSalesReportMonth" placeholder="mm/yyyy">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -209,7 +209,7 @@
 							<div id="getFlightListing" class="panel-collapse collapse">
 								<div class="panel-body">
 								<form>
-									<button type="submit" class="btn btn-default">Submit</button>
+									<button type="button" class="btn btn-default">Submit</button>
 								</form>
 							</div>
 							</div>
@@ -232,7 +232,7 @@
 											<label for="getReservationsByFlightNumberNumber">Flight Number</label>
 											<input type="number" class="form-control" name="getReservationsByFlightNumberNumber" id="getReservationsByFlightNumberNumber" placeholder="0">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -255,7 +255,7 @@
 											<label for="getReservationsByCustomerNameLast">Last Name</label>
 											<input type="text" class="form-control" name="getReservationsByCustomerNameLast" id="getReservationsByCustomerNameLast" placeholder="Smith">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -278,7 +278,7 @@
 											<label for="getRevenueByFlightNumber">Flight Number</label>
 											<input type="number" class="form-control" name="getRevenueByFlightNumber" id="getRevenueByFlightNumber" placeholder="0">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -297,7 +297,7 @@
 											<label for="getRevenueByDestinationCityCity">City</label>
 											<input type="text" class="form-control" name="getRevenueByDestinationCityCity" id="getRevenueByDestinationCityCity" placeholder="New York">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -316,7 +316,7 @@
 											<label for="getRevenueByCustomerAccountId">Customer Account Id</label>
 											<input type="number" class="form-control" name="getRevenueByCustomerAccountId" id="getRevenueByCustomerAccountId" placeholder="0">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -331,7 +331,7 @@
 							<div id="getCustomerOfMaxRevenue" class="panel-collapse collapse">
 								<div class="panel-body">
 									<form>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -346,7 +346,7 @@
 							<div id="getMostActiveFlights" class="panel-collapse collapse">
 								<div class="panel-body">
 									<form>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
 							</div>
@@ -373,9 +373,26 @@
 											<label for="getCustomersOnFlightLeg">Leg Number</label>
 											<input type="number" class="form-control" name="getCustomersOnFlightLeg" id="getCustomersOnFlightLeg" placeholder="0">
 										</div>
-										<button type="submit" class="btn btn-default">Submit</button>
+										<button type="button" class="btn btn-default">Submit</button>
 									</form>
 								</div>
+							</div>
+						</div>
+<!--*** GET FLIGHT LISTING **************************************-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#getAllEmployees">Get all employees</a>
+								</h4>
+							</div>
+							<div id="getAllEmployees" class="panel-collapse collapse">
+								<div class="panel-body">
+								<form>
+									<button type="button" class="btn btn-default" onClick="getAllEmployees();">Submit</button>
+								</form>
+								<div id="getAllEmployeesResult">
+								</div>
+							</div>
 							</div>
 						</div>
 
