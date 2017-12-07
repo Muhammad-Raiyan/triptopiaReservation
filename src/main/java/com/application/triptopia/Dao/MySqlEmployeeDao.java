@@ -96,7 +96,7 @@ public class MySqlEmployeeDao implements EmployeeDao{
     @Override
     public void insertEmployeeToDB(Employee employee) {
         String sqlAddPerson = "INSERT INTO Person(FirstName,LastName,Address,City,State,ZipCode)\n" +
-                "    values(?,?,?,?,?,?);";
+                "values(?,?,?,?,?,?);";
 
         KeyHolder key = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
