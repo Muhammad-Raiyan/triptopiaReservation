@@ -25,6 +25,7 @@ public class MySqlAppDao{
 
 
 
+
     private static class EmployeeRowMapper implements RowMapper<Employee>{
         @Override
         public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -335,4 +336,16 @@ public class MySqlAppDao{
         jdbcTemplate.update("CALL `reservation_schema`.`getSuggestedLegs`(?)", i);
     }
 
+    public List<Map<String,Object>> searchRoute(String depAirportId, String arrAirportId, String depTime, String arrTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        List<Map<String, Object>> maps = null;
+        try {
+            Date depDate = sdf.parse(depTime);
+            Date arrDate = sdf.parse(arrTime);
+            maps = jdbcTemplate.queryForList("CALL `reservation_schema`.`findRoutes`(?, ?, ?, ?)", depAirportId, arrAirportId, new Timestamp(depDate.getTime()), new Timestamp(arrDate.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return maps;
+    }
 }

@@ -110,4 +110,9 @@ public class EmployeeService {
     public void recommendedFlightsForCustomer(int i) {
         appDao.recommendedFlightsForCustomer(i);
     }
+
+
+    public List<Map<String, Object>> searchRoute(String depAirportId, String arrAirportId, String depTime, String arrTime) {
+        return appDao.searchRoute(depAirportId, arrAirportId, depTime, arrTime);
+    }
 }
