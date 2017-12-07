@@ -14,7 +14,7 @@ function getFailure(resultId){
 	return function(response, textStatus){
 		console.log("Failure: " + JSON.stringify(response, null, 2));
 		var divContainer = document.getElementById(resultId);
-		divContainer.innerHTML = "Error Retrieveing Values";
+		divContainer.innerHTML = "Error Retrieving Values, Please Try Again Later";
 	}
 }
 
