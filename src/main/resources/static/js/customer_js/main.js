@@ -140,15 +140,13 @@ jQuery(document).ready(function($) {
 function orderTicketsNowClick(){
 	$("#makeTwoWayReservation").hide();
 	$("#makeOneWayReservation").hide();
-	var url = '/home/customer/orderTickets/'
-	toSend = {};
-	url += (toSend["fromAirport"]  = $("#from").val()) + '/';
-	url += (toSend["toAirport"]    = $("#to").val()) + '/';
-	url += (toSend["depatureDate"] = $("#departure").val()) + '/';
-	url += (toSend["returnDate"]   = $("#return").val()) + '/';
-	url += (toSend["tripType"]     = $("input[name='trip']:checked").val());
+	var url = '/home/customer/search/'
+	url += $("#from").val() + '/';
+	url += $("#to").val() + '/';
+	url += $("#departure").val() + '/';
+	url += $("#return").val();
 	ajaxWrapperGET(url, "bookFlightResults");
-	if(toSend["tripType"]=="round"){
+	if($("input[name='trip']:checked").val()=="round"){
 		$("#makeTwoWayReservation").show();
 	}else{
 		$("#makeOneWayReservation").show();

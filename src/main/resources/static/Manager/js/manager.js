@@ -38,7 +38,7 @@ function getFlightListing(){
 }
 
 function viewEmployee(){
-		ajaxWrapperGET('/home/employee/get/'+$("#viewEmployeeSSN").val(), "viewEmployeeResult");
+	ajaxWrapperGET('/home/employee/get/'+$("#viewEmployeeSSN").val(), "viewEmployeeResult");
 }
 
 function getReservationsByCustomerName(){
