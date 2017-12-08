@@ -123,4 +123,8 @@ public class EmployeeService {
     public List<Map<String,Object>> getCurrentlReservations(Integer accountNo) {
         return appDao.getCurrentReservations(accountNo);
     }
+
+    public List<Map<String,Object>> getMailingList() {
+        return appDao.getMailingList();
+    }
 }

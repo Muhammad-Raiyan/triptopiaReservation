@@ -24,8 +24,6 @@ public class MySqlAppDao{
     private JdbcTemplate jdbcTemplate;
 
 
-
-
     private static class EmployeeRowMapper implements RowMapper<Employee>{
         @Override
         public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -313,13 +311,13 @@ public class MySqlAppDao{
     }
 
     public void updateCustomer(Customer customer, int i) {
-        if(customer.getCreditCardNo()!=null){
+        if(!customer.getCreditCardNo().equals("")){
             jdbcTemplate.update("CALL `reservation_schema`.`editCustomerCreditCard`(?, ?)", customer.getCreditCardNo(), i);
         }
-        if(customer.getPhoneNo()!=null){
+        if(!customer.getPhoneNo().equals("")){
             jdbcTemplate.update("CALL `reservation_schema`.`editCustomerPhoneNo`(?, ?)", customer.getPhoneNo() , i);
         }
-        if(customer.getEmail()!=null){
+        if(!customer.getEmail().equals("")){
             jdbcTemplate.update("CALL `reservation_schema`.`editCustomerEmail`(?, ?)", customer.getEmail() , i);
         }
         if(customer.getRating()!=0){
@@ -360,5 +358,9 @@ public class MySqlAppDao{
                 "WHERE reservation.AccountNo = ? AND reservation.ResrNo = includes.ResrNo " +
                 "AND includes.LegNo = leg.legNo AND  DATE(leg.DepTime)  between CURRENT_DATE() AND '9999-12-31' ";
         return jdbcTemplate.queryForList(sql, accountNo);
+    }
+
+    public List<Map<String,Object>> getMailingList() {
+        return jdbcTemplate.queryForList("call reservation_schema.getCustomerMailingList()");
     }
 }

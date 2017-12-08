@@ -103,7 +103,7 @@ public class AppController {
         appService.addCustomer(customer);
     }
 
-    @RequestMapping(value = "/rep/updateCustomer/{accountNo}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/rep/updateCustomer/{accountNo}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateCustomer(@RequestBody Customer customer,  @PathVariable("accountNo") String accountNo) {
         appService.updateCustomer(customer, Integer.parseInt(accountNo));
     }
@@ -146,6 +146,11 @@ public class AppController {
     @RequestMapping(value = "/customer/getCurrentReservations/{accountNo}", method = RequestMethod.GET)
     public List<Map<String, Object>> getCurrentReservations(@PathVariable("accountNo") Integer accountNo){
         return appService.getCurrentlReservations(accountNo);
+    }
+
+    @RequestMapping(value = "/rep/getMailingList", method = RequestMethod.GET)
+    public List<Map<String, Object>> getMailingList(){
+        return appService.getMailingList();
     }
 
 }
