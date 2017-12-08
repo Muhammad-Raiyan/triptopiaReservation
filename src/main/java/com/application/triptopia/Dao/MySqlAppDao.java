@@ -348,4 +348,17 @@ public class MySqlAppDao{
         }
         return maps;
     }
+
+    public List<Map<String, Object>> getAllReservations(Integer accountNo) {
+        String sql = "SELECT * from reservation WHERE reservation.accountNo = ?";
+        return jdbcTemplate.queryForList(sql, accountNo);
+    }
+
+    public List<Map<String,Object>> getCurrentReservations(Integer accountNo) {
+        String sql = "SELECT * " +
+                "FROM reservation, reservation_schema.includes, reservation_schema.leg " +
+                "WHERE reservation.AccountNo = ? AND reservation.ResrNo = includes.ResrNo " +
+                "AND includes.LegNo = leg.legNo AND  DATE(leg.DepTime)  between CURRENT_DATE() AND '9999-12-31' ";
+        return jdbcTemplate.queryForList(sql, accountNo);
+    }
 }

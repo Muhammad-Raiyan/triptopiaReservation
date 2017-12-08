@@ -138,4 +138,14 @@ public class AppController {
         return appService.searchRoute(depAirportId, arrAirportId, depTime, arrTime);
     }
 
+    @RequestMapping(value = "/customer/getAllReservations/{accountNo}", method = RequestMethod.GET)
+    public List<Map<String, Object>> getAllReservations(@PathVariable("accountNo") Integer accountNo){
+        return appService.getAllReservations(accountNo);
+    }
+
+    @RequestMapping(value = "/customer/getCurrentReservations/{accountNo}", method = RequestMethod.GET)
+    public List<Map<String, Object>> getCurrentReservations(@PathVariable("accountNo") Integer accountNo){
+        return appService.getCurrentlReservations(accountNo);
+    }
+
 }
