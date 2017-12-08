@@ -65,3 +65,8 @@ function getRecommendedFlightsByCustomer(){
 	var url = '/home/rep/recommendedFlights/' + $("#getRecommendedFlightsByCustomerAccountNo").val();
 	ajaxWrapperGET(url, "getRecommendedFlightsByCustomerResult");
 }
+
+function getMailingList(){
+	var url = '/home/rep/getMailingList';
+	ajaxWrapperGET(url, "getMailingListResult");
+}
