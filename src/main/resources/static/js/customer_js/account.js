@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
 
 function loggedIn(){
 	$("#accordianRestOfThePage").show();
-	/*
+/*
 	var inUrl = '/home/customer/login/'+$("#accountNo").val()+'/'+$("#password").val();
 	resultId = "loginResult";
 	jQuery.ajax({
@@ -13,8 +13,11 @@ function loggedIn(){
 		type: 'GET',
 		success: function(response, textStatus){
 			console.log("Success: " + JSON.stringify(response, null, 2));
-			var divContainer = document.getElementById(resultId);
-			if(response=true){
+			var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
+			$.each(response, function (index, value) {
+					arrItems.push(value);     // PUSH THE VALUES INSIDE THE ARRAY.
+			});
+			if(arrItems.length>0){
 				divContainer.innerHTML = "Logged in as account number\"" + $("#accountNo").val() + "\"";
 				$("#accordianRestOfThePage").show();
 			}else{
@@ -26,8 +29,8 @@ function loggedIn(){
 			var divContainer = document.getElementById(resultId);
 			divContainer.innerHTML = "Error Retrieving Values, Please Try Again Later";
 		}
-	});*/
-}
+	});
+}*/
 
 function getCurrentReservations(){
 	ajaxWrapperGET('/home/customer/getCurrentReservations/'+$("#accountNo").val(), "getCurrentReservationsResult");
