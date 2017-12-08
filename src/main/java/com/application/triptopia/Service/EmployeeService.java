@@ -115,4 +115,12 @@ public class EmployeeService {
     public List<Map<String, Object>> searchRoute(String depAirportId, String arrAirportId, String depTime, String arrTime) {
         return appDao.searchRoute(depAirportId, arrAirportId, depTime, arrTime);
     }
+
+    public List<Map<String, Object>> getAllReservations(Integer accountNo) {
+        return appDao.getAllReservations(accountNo);
+    }
+
+    public List<Map<String,Object>> getCurrentlReservations(Integer accountNo) {
+        return appDao.getCurrentReservations(accountNo);
+    }
 }
