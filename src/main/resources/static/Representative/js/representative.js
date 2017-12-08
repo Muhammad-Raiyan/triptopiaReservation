@@ -52,7 +52,7 @@ function changeCustomer(){
 	toSend["creditCardNo"] = $("#addCustomerCreditCard").val();
 	toSend["creationDate"] = $("#addCustomerDate").val();
 	toSend["email"] = $("#addCustomerEmail").val();
-	var url = '/home/rep/updateCustomer' + $("#changeCustomerAccountNo").val()
+	var url = '/home/rep/updateCustomer/' + $("#changeCustomerAccountNo").val()
 	ajaxWrapperPUT(url, JSON.stringify(toSend));
 }
 
